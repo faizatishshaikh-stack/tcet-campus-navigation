@@ -1,5 +1,5 @@
 import React from 'react';
-import { Compass, Cpu, Navigation, Sparkles, MapPin, Server, Activity } from 'lucide-react';
+import { Compass, Cpu, Navigation, Sparkles, MapPin, Server, Activity, Sun, Moon } from 'lucide-react';
 
 export function Header({
   onOpenDsaInspector,
@@ -8,7 +8,9 @@ export function Header({
   setBackendMode,
   cBackendStatus,
   onCheckCBackend,
-  blockedCount
+  blockedCount,
+  theme,
+  onToggleTheme
 }) {
   return (
     <header className="app-header">
@@ -30,9 +32,19 @@ export function Header({
 
       {/* Action Controls */}
       <div className="header-actions">
+        {/* Theme Toggle Button */}
+        <button 
+          className="header-btn theme-toggle-btn"
+          onClick={onToggleTheme}
+          title={theme === 'dark' ? 'Switch to Light Theme' : 'Switch to Dark Theme'}
+        >
+          {theme === 'dark' ? <Sun size={14} color="#F6AD55" /> : <Moon size={14} />}
+          <span>{theme === 'dark' ? 'Light Mode' : 'Dark Mode'}</span>
+        </button>
+
         {/* Roadblock active indicator */}
         {blockedCount > 0 && (
-          <div className="backend-indicator" style={{ backgroundColor: '#FDEDED', borderColor: '#F5C6C6', color: '#C5221F' }}>
+          <div className="backend-indicator" style={{ backgroundColor: 'rgba(217, 56, 41, 0.12)', borderColor: 'var(--route-blocked)', color: 'var(--route-blocked)' }}>
             <span>⚠️ {blockedCount} {blockedCount === 1 ? 'roadblock' : 'roadblocks'} active</span>
           </div>
         )}

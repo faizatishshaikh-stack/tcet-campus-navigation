@@ -1,4 +1,4 @@
-import React, { useState, useRef, useMemo, useEffect } from 'react';
+import React, { useState, useRef, useMemo } from 'react';
 import { 
   ZoomIn, ZoomOut, RotateCcw, AlertTriangle, 
   MapPin, Compass, Navigation, Eye, EyeOff
@@ -21,9 +21,11 @@ export function CampusMap({
   isSimulating,
   simulatedProgress,
   activeStepIndex,
-  directions
+  directions,
+  theme = 'light'
 }) {
   const svgRef = useRef(null);
+  const isDark = theme === 'dark';
 
   // Pan & Zoom state (Optimized for TCET campus masterplan)
   const [viewBox, setViewBox] = useState({ x: 80, y: 150, width: 1050, height: 580 });
@@ -188,7 +190,7 @@ export function CampusMap({
           <span>Blocked Pathway</span>
         </div>
         {isBlockModeActive && (
-          <div className="legend-item" style={{ color: '#D96B27', fontWeight: 700 }}>
+          <div className="legend-item" style={{ color: isDark ? '#F6AD55' : '#D96B27', fontWeight: 700 }}>
             <span>⚠️ Roadblock Tool Active (Click walkway to toggle)</span>
           </div>
         )}
@@ -207,64 +209,197 @@ export function CampusMap({
         <defs>
           {/* Subtle Grid Pattern */}
           <pattern id="campus-grid" width="40" height="40" patternUnits="userSpaceOnUse">
-            <path d="M 40 0 L 0 0 0 40" fill="none" stroke="#E3DFC7" strokeWidth="0.5" strokeOpacity="0.5" />
+            <path 
+              d="M 40 0 L 0 0 0 40" 
+              fill="none" 
+              stroke={isDark ? '#1C2920' : '#E3DFC7'} 
+              strokeWidth="0.5" 
+              strokeOpacity={isDark ? 0.7 : 0.5} 
+            />
           </pattern>
 
           {/* Construction Roadblock Hazard Pattern */}
           <pattern id="hazard-stripe" width="12" height="12" patternTransform="rotate(45 0 0)" patternUnits="userSpaceOnUse">
-            <line x1="0" y1="0" x2="0" y2="12" stroke="#D93829" strokeWidth="5" />
-            <line x1="6" y1="0" x2="6" y2="12" stroke="#FFFFFF" strokeWidth="5" />
+            <line x1="0" y1="0" x2="0" y2="12" stroke="#E53E3E" strokeWidth="5" />
+            <line x1="6" y1="0" x2="6" y2="12" stroke={isDark ? '#1A202C' : '#FFFFFF'} strokeWidth="5" />
           </pattern>
 
           {/* Drop Shadows */}
           <filter id="building-shadow" x="-10%" y="-10%" width="125%" height="125%">
-            <feDropShadow dx="1" dy="3" stdDeviation="2.5" floodColor="#1F2823" floodOpacity="0.18" />
+            <feDropShadow 
+              dx="1" 
+              dy="3" 
+              stdDeviation="2.5" 
+              floodColor={isDark ? '#000000' : '#1F2823'} 
+              floodOpacity={isDark ? 0.6 : 0.18} 
+            />
           </filter>
 
           <filter id="route-glow" x="-20%" y="-20%" width="140%" height="140%">
-            <feGaussianBlur stdDeviation="3" result="blur" />
+            <feGaussianBlur stdDeviation={isDark ? 5 : 3} result="blur" />
             <feComposite in="SourceGraphic" in2="blur" operator="over" />
           </filter>
         </defs>
 
         {/* 1. Base Terrain Grid */}
-        <rect x="-500" y="-500" width="2200" height="2000" fill="url(#campus-grid)" />
+        <rect x="-500" y="-500" width="2200" height="2000" fill={isDark ? '#0D1310' : 'url(#campus-grid)'} />
+        {isDark && <rect x="-500" y="-500" width="2200" height="2000" fill="url(#campus-grid)" opacity="0.6" />}
 
         {/* 2. TCET Campus Real Architectural Landscaping */}
         {showLawns && (
           <g className="campus-landscaping">
             {/* Western Main Access Road: Shyamnarayan Thakur Marg */}
-            <rect x="70" y="100" width="55" height="640" rx="3" fill="#E6E2D8" stroke="#D8D4C8" strokeWidth="1" />
-            <line x1="97" y1="110" x2="97" y2="730" stroke="#FFFFFF" strokeWidth="2" strokeDasharray="12 12" />
-            <text x="92" y="420" transform="rotate(-90 92 420)" fontSize="9" fontWeight="700" fill="#7C867F" letterSpacing="0.1em" fontFamily="var(--font-mono)">
+            <rect 
+              x="70" 
+              y="100" 
+              width="55" 
+              height="640" 
+              rx="3" 
+              fill={isDark ? '#151D18' : '#E6E2D8'} 
+              stroke={isDark ? '#233228' : '#D8D4C8'} 
+              strokeWidth="1" 
+            />
+            <line 
+              x1="97" 
+              y1="110" 
+              x2="97" 
+              y2="730" 
+              stroke={isDark ? '#3D5344' : '#FFFFFF'} 
+              strokeWidth="2" 
+              strokeDasharray="12 12" 
+            />
+            <text 
+              x="92" 
+              y="420" 
+              transform="rotate(-90 92 420)" 
+              fontSize="9" 
+              fontWeight="700" 
+              fill={isDark ? '#5E7D68' : '#7C867F'} 
+              letterSpacing="0.1em" 
+              fontFamily="var(--font-mono)"
+            >
               SHYAMNARAYAN THAKUR MARG (THAKUR VILLAGE ROAD)
             </text>
 
             {/* TCET Campus Perimeter Compound Boundary */}
-            <rect x="135" y="150" width="970" height="580" rx="10" fill="#F4F1E9" stroke="#DDD8CB" strokeWidth="1.5" strokeDasharray="4 2" />
+            <rect 
+              x="135" 
+              y="150" 
+              width="970" 
+              height="580" 
+              rx="10" 
+              fill={isDark ? '#111A15' : '#F4F1E9'} 
+              stroke={isDark ? '#273B2E' : '#DDD8CB'} 
+              strokeWidth="1.5" 
+              strokeDasharray="4 2" 
+            />
 
             {/* A-Block Master Architectural Footprint Base */}
-            <rect x="365" y="195" width="295" height="425" rx="8" fill="#EDE9DF" stroke="#DCD6C8" strokeWidth="1.5" />
-            <text x="512" y="212" textAnchor="middle" fontSize="9.5" fontWeight="800" fill="#58635B" letterSpacing="0.06em" fontFamily="var(--font-mono)">
+            <rect 
+              x="365" 
+              y="195" 
+              width="295" 
+              height="425" 
+              rx="8" 
+              fill={isDark ? '#16221B' : '#EDE9DF'} 
+              stroke={isDark ? '#2B4031' : '#DCD6C8'} 
+              strokeWidth="1.5" 
+            />
+            <text 
+              x="512" 
+              y="212" 
+              textAnchor="middle" 
+              fontSize="9.5" 
+              fontWeight="800" 
+              fill={isDark ? '#7E9F88' : '#58635B'} 
+              letterSpacing="0.06em" 
+              fontFamily="var(--font-mono)"
+            >
               TCET A-BLOCK (7-STOREY ENGINEERING COMPLEX)
             </text>
 
             {/* Central Courtyard & Amphitheatre Paved Plaza */}
-            <circle cx="740" cy="390" r="62" fill="#E8E4D8" stroke="#D6D0C2" strokeWidth="1.5" />
-            <circle cx="740" cy="390" r="38" fill="#E0DDD2" stroke="#CCC6B8" strokeWidth="1" strokeDasharray="3 3" />
-            <circle cx="740" cy="390" r="8" fill="#B4AD9F" />
+            <circle 
+              cx="740" 
+              cy="390" 
+              r="62" 
+              fill={isDark ? '#18241C' : '#E8E4D8'} 
+              stroke={isDark ? '#273B2E' : '#D6D0C2'} 
+              strokeWidth="1.5" 
+            />
+            <circle 
+              cx="740" 
+              cy="390" 
+              r="38" 
+              fill={isDark ? '#131D17' : '#E0DDD2'} 
+              stroke={isDark ? '#203126' : '#CCC6B8'} 
+              strokeWidth="1" 
+              strokeDasharray="3 3" 
+            />
+            <circle cx="740" cy="390" r="8" fill={isDark ? '#2F4839' : '#B4AD9F'} />
 
             {/* Thakur Sports Ground & Turf (3.5 Acres) */}
-            <rect x="880" y="210" width="160" height="300" rx="20" fill="#DEEBDF" stroke="#C5DBC6" strokeWidth="2" />
+            <rect 
+              x="880" 
+              y="210" 
+              width="160" 
+              height="300" 
+              rx="20" 
+              fill={isDark ? '#132819' : '#DEEBDF'} 
+              stroke={isDark ? '#214229' : '#C5DBC6'} 
+              strokeWidth="2" 
+            />
             {/* Athletic Track Boundary */}
-            <rect x="895" y="225" width="130" height="270" rx="14" fill="#E9DFD8" stroke="#D5C5BC" strokeWidth="2" />
-            <rect x="905" y="235" width="110" height="250" rx="10" fill="#D3E5D4" stroke="#B8D5BA" strokeWidth="1.5" />
+            <rect 
+              x="895" 
+              y="225" 
+              width="130" 
+              height="270" 
+              rx="14" 
+              fill={isDark ? '#271D18' : '#E9DFD8'} 
+              stroke={isDark ? '#3F2C24' : '#D5C5BC'} 
+              strokeWidth="2" 
+            />
+            <rect 
+              x="905" 
+              y="235" 
+              width="110" 
+              height="250" 
+              rx="10" 
+              fill={isDark ? '#122D1A' : '#D3E5D4'} 
+              stroke={isDark ? '#24522D' : '#B8D5BA'} 
+              strokeWidth="1.5" 
+            />
             {/* Cricket Pitch */}
-            <rect x="952" y="325" width="16" height="70" rx="2" fill="#D9CCA8" stroke="#C7B892" strokeWidth="1" />
-            <text x="960" y="280" textAnchor="middle" fontSize="9" fontWeight="800" fill="#4B6E52" fontFamily="var(--font-mono)">
+            <rect 
+              x="952" 
+              y="325" 
+              width="16" 
+              height="70" 
+              rx="2" 
+              fill={isDark ? '#383020' : '#D9CCA8'} 
+              stroke={isDark ? '#4D422B' : '#C7B892'} 
+              strokeWidth="1" 
+            />
+            <text 
+              x="960" 
+              y="280" 
+              textAnchor="middle" 
+              fontSize="9" 
+              fontWeight="800" 
+              fill={isDark ? '#5EE87E' : '#4B6E52'} 
+              fontFamily="var(--font-mono)"
+            >
               THAKUR SPORTS TURF
             </text>
-            <text x="960" y="293" textAnchor="middle" fontSize="8" fontWeight="600" fill="#5C8263">
+            <text 
+              x="960" 
+              y="293" 
+              textAnchor="middle" 
+              fontSize="8" 
+              fontWeight="600" 
+              fill={isDark ? '#7BB887' : '#5C8263'}
+            >
               3.5 ACRE ARENA
             </text>
           </g>
@@ -304,7 +439,7 @@ export function CampusMap({
                   y1={p1.y}
                   x2={p2.x}
                   y2={p2.y}
-                  stroke={isBlocked ? '#D93829' : '#D1CBBF'}
+                  stroke={isBlocked ? '#E53E3E' : (isDark ? '#263B2F' : '#D1CBBF')}
                   strokeWidth={isBlocked ? 4 : 5}
                   strokeDasharray={isBlocked ? '6 4' : 'none'}
                   strokeLinecap="round"
@@ -317,7 +452,7 @@ export function CampusMap({
                     y1={p1.y}
                     x2={p2.x}
                     y2={p2.y}
-                    stroke="#FFFFFF"
+                    stroke={isDark ? 'rgba(72, 187, 120, 0.3)' : '#FFFFFF'}
                     strokeWidth="1.5"
                     strokeDasharray="4 6"
                     strokeOpacity="0.8"
@@ -327,8 +462,25 @@ export function CampusMap({
                 {/* Roadblock Hazard Indicator */}
                 {isBlocked && (
                   <g transform={`translate(${midX}, ${midY})`}>
-                    <rect x="-24" y="-10" width="48" height="20" rx="4" fill="#D93829" stroke="#FFFFFF" strokeWidth="1.5" />
-                    <text x="0" y="3.5" textAnchor="middle" fontSize="9" fontWeight="800" fill="#FFFFFF" fontFamily="var(--font-mono)">
+                    <rect 
+                      x="-24" 
+                      y="-10" 
+                      width="48" 
+                      height="20" 
+                      rx="4" 
+                      fill="#E53E3E" 
+                      stroke="#FFFFFF" 
+                      strokeWidth="1.5" 
+                    />
+                    <text 
+                      x="0" 
+                      y="3.5" 
+                      textAnchor="middle" 
+                      fontSize="9" 
+                      fontWeight="800" 
+                      fill="#FFFFFF" 
+                      fontFamily="var(--font-mono)"
+                    >
                       BLOCKED
                     </text>
                   </g>
@@ -343,10 +495,10 @@ export function CampusMap({
                       width="36"
                       height="16"
                       rx="3"
-                      fill="#FFFFFF"
-                      stroke="#D8D4C8"
+                      fill={isDark ? '#17241C' : '#FFFFFF'}
+                      stroke={isDark ? '#293E31' : '#D8D4C8'}
                       strokeWidth="1"
-                      opacity="0.9"
+                      opacity={isDark ? '0.95' : '0.9'}
                     />
                     <text
                       x="0"
@@ -355,7 +507,7 @@ export function CampusMap({
                       fontSize="9"
                       fontWeight="600"
                       fontFamily="var(--font-mono)"
-                      fill="#5C665F"
+                      fill={isDark ? '#98AD9F' : '#5C665F'}
                     >
                       {edge.distance}m
                     </text>
@@ -366,13 +518,13 @@ export function CampusMap({
           })}
         </g>
 
-        {/* 4. Alternative Route (Dashed Terracotta) */}
+        {/* 4. Alternative Route (Dashed Terracotta / Neon Amber) */}
         {alternativeSvgPath && activeRouteType !== 'alternative' && (
           <g className="route-alternative-layer">
             <path
               d={alternativeSvgPath}
               fill="none"
-              stroke="#D96B27"
+              stroke={isDark ? '#F6AD55' : '#D96B27'}
               strokeWidth="5"
               strokeDasharray="8 6"
               strokeLinecap="round"
@@ -382,14 +534,14 @@ export function CampusMap({
           </g>
         )}
 
-        {/* 5. Primary Active Route (Glowing Forest Green) */}
+        {/* 5. Primary Active Route (Glowing Forest Green / Radiant Emerald) */}
         {primarySvgPath && (
           <g className="route-primary-layer">
             {/* Soft Glow Underlay */}
             <path
               d={primarySvgPath}
               fill="none"
-              stroke="rgba(27, 59, 43, 0.25)"
+              stroke={isDark ? 'rgba(56, 224, 133, 0.45)' : 'rgba(27, 59, 43, 0.25)'}
               strokeWidth="12"
               strokeLinecap="round"
               strokeLinejoin="round"
@@ -398,7 +550,11 @@ export function CampusMap({
             <path
               d={primarySvgPath}
               fill="none"
-              stroke={activeRouteType === 'alternative' ? '#D96B27' : '#1B3B2B'}
+              stroke={
+                activeRouteType === 'alternative' 
+                  ? (isDark ? '#F6AD55' : '#D96B27') 
+                  : (isDark ? '#38E085' : '#1B3B2B')
+              }
               strokeWidth="5.5"
               strokeLinecap="round"
               strokeLinejoin="round"
@@ -450,19 +606,19 @@ export function CampusMap({
                   width={b.width}
                   height={b.height}
                   rx="6"
-                  fill="#FFFFFF"
+                  fill={isDark ? '#17221C' : '#FFFFFF'}
                   stroke={
-                    isStart ? '#1B3B2B' :
-                    isDest ? '#D96B27' :
-                    isWayPoint ? '#7C9385' :
-                    '#D1CAC0'
+                    isStart ? (isDark ? '#38E085' : '#1B3B2B') :
+                    isDest ? (isDark ? '#F6AD55' : '#D96B27') :
+                    isWayPoint ? (isDark ? '#3E7D56' : '#7C9385') :
+                    (isDark ? '#283B2F' : '#D1CAC0')
                   }
                   strokeWidth={isStart || isDest ? 2.5 : 1.5}
                   filter="url(#building-shadow)"
                   className="building-rect"
                 />
 
-                {/* Inner Architectural Courtyard Cutout for Admin & Hostels */}
+                {/* Inner Architectural Courtyard Cutout */}
                 {b.shape === 'courtyard' && (
                   <rect
                     x={-halfW + 16}
@@ -470,8 +626,8 @@ export function CampusMap({
                     width={b.width - 32}
                     height={b.height - 28}
                     rx="3"
-                    fill="#F2EFE8"
-                    stroke="#D8D3C8"
+                    fill={isDark ? '#101713' : '#F2EFE8'}
+                    stroke={isDark ? '#223328' : '#D8D3C8'}
                     strokeWidth="1"
                   />
                 )}
@@ -483,7 +639,7 @@ export function CampusMap({
                   width={b.width - 2}
                   height="5"
                   rx="2"
-                  fill={categoryMeta.color}
+                  fill={isDark && isStart ? '#38E085' : categoryMeta.color}
                 />
 
                 {/* Building Code Badge */}
@@ -493,7 +649,7 @@ export function CampusMap({
                   width="36"
                   height="16"
                   rx="3"
-                  fill={categoryMeta.badgeBg}
+                  fill={isDark ? '#223328' : categoryMeta.badgeBg}
                 />
                 <text
                   x={-halfW + 26}
@@ -502,7 +658,7 @@ export function CampusMap({
                   fontSize="9.5"
                   fontWeight="800"
                   fontFamily="var(--font-mono)"
-                  fill={categoryMeta.badgeText}
+                  fill={isDark ? '#81E6D9' : categoryMeta.badgeText}
                 >
                   {b.code}
                 </text>
@@ -514,7 +670,7 @@ export function CampusMap({
                   fontSize="11"
                   fontWeight="700"
                   fontFamily="var(--font-sans)"
-                  fill="#1C221F"
+                  fill={isDark ? '#EDF4EF' : '#1C221F'}
                 >
                   {b.shortName || (b.name.length > 18 ? b.name.substring(0, 16) + '…' : b.name)}
                 </text>
@@ -522,7 +678,7 @@ export function CampusMap({
                 {/* Start Pin Badge (Green) */}
                 {isStart && (
                   <g transform={`translate(0, ${-halfH - 14})`}>
-                    <circle cx="0" cy="0" r="12" fill="#1B3B2B" stroke="#FFFFFF" strokeWidth="2" />
+                    <circle cx="0" cy="0" r="12" fill={isDark ? '#28A745' : '#1B3B2B'} stroke="#FFFFFF" strokeWidth="2" />
                     <text x="0" y="3.5" textAnchor="middle" fontSize="10" fontWeight="800" fill="#FFFFFF">
                       A
                     </text>
@@ -532,7 +688,7 @@ export function CampusMap({
                 {/* Destination Pin Badge (Orange) */}
                 {isDest && (
                   <g transform={`translate(0, ${-halfH - 14})`}>
-                    <circle cx="0" cy="0" r="12" fill="#D96B27" stroke="#FFFFFF" strokeWidth="2" />
+                    <circle cx="0" cy="0" r="12" fill={isDark ? '#DD6B20' : '#D96B27'} stroke="#FFFFFF" strokeWidth="2" />
                     <text x="0" y="3.5" textAnchor="middle" fontSize="10" fontWeight="800" fill="#FFFFFF">
                       B
                     </text>
@@ -547,12 +703,12 @@ export function CampusMap({
         {simulationPoint && (
           <g transform={`translate(${simulationPoint.x}, ${simulationPoint.y})`}>
             {/* Animated Pulse Ring */}
-            <circle cx="0" cy="0" r="18" fill="rgba(217, 107, 39, 0.25)">
+            <circle cx="0" cy="0" r="18" fill={isDark ? 'rgba(246, 173, 85, 0.4)' : 'rgba(217, 107, 39, 0.25)'}>
               <animate attributeName="r" values="10;22;10" dur="1.5s" repeatCount="indefinite" />
               <animate attributeName="opacity" values="0.8;0.1;0.8" dur="1.5s" repeatCount="indefinite" />
             </circle>
             {/* Center Walker Pin */}
-            <circle cx="0" cy="0" r="8" fill="#D96B27" stroke="#FFFFFF" strokeWidth="2.5" />
+            <circle cx="0" cy="0" r="8" fill={isDark ? '#ED8936' : '#D96B27'} stroke="#FFFFFF" strokeWidth="2.5" />
             <circle cx="0" cy="0" r="3" fill="#FFFFFF" />
           </g>
         )}

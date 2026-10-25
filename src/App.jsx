@@ -21,6 +21,8 @@ export default function App() {
         cBackendStatus={nav.cBackendStatus}
         onCheckCBackend={nav.checkCBackend}
         blockedCount={nav.blockedEdgeIds.size}
+        theme={nav.theme}
+        onToggleTheme={nav.toggleTheme}
       />
 
       {/* 2. Main Workspace: Sidebar & Interactive Campus Map */}
@@ -66,6 +68,7 @@ export default function App() {
           simulatedProgress={nav.simulatedProgress}
           activeStepIndex={nav.activeStepIndex}
           directions={nav.directions}
+          theme={nav.theme}
         />
       </div>
 

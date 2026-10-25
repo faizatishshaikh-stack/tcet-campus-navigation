@@ -99,7 +99,7 @@ export function Sidebar({
                 style={{
                   background: 'none',
                   border: 'none',
-                  color: '#C5221F',
+                  color: 'var(--route-blocked, #C5221F)',
                   fontSize: '11px',
                   fontWeight: 700,
                   cursor: 'pointer',
@@ -110,7 +110,7 @@ export function Sidebar({
               </button>
             </div>
           ) : (
-            <span style={{ fontSize: '11px', color: '#7E8A83' }}>
+            <span style={{ fontSize: '11px', color: 'var(--text-muted)' }}>
               All 24 walkways are clear and accessible.
             </span>
           )}
@@ -159,18 +159,18 @@ export function Sidebar({
                 className={`sim-btn ${isSimulating ? 'running' : ''}`}
                 onClick={onToggleSimulation}
               >
-                {isSimulating ? <Square size={13} fill="#8C4015" /> : <Play size={13} fill="#1B3B2B" />}
+                {isSimulating ? <Square size={13} fill="currentColor" /> : <Play size={13} fill="currentColor" />}
                 <span>{isSimulating ? 'Stop Walk Simulation' : 'Simulate Walking Route'}</span>
               </button>
             </div>
           </div>
         ) : (
-          <div className="route-summary-card" style={{ borderColor: '#F5C6C6', backgroundColor: '#FFF7F7' }}>
-            <div style={{ display: 'flex', alignItems: 'center', gap: '8px', color: '#C5221F' }}>
+          <div className="route-summary-card" style={{ borderColor: 'var(--border-medium)', backgroundColor: 'var(--bg-subtle)' }}>
+            <div style={{ display: 'flex', alignItems: 'center', gap: '8px', color: 'var(--route-blocked, #E53E3E)' }}>
               <AlertOctagon size={16} />
               <strong style={{ fontSize: '12px' }}>Destination Unreachable</strong>
             </div>
-            <p style={{ fontSize: '11px', color: '#682020' }}>
+            <p style={{ fontSize: '11px', color: 'var(--text-muted)' }}>
               Active roadblocks have disconnected all possible pedestrian routes to the destination.
               Try removing some roadblocks above.
             </p>

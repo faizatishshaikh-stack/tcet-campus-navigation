@@ -33,7 +33,7 @@ export function NearbyModal({
         {/* Header */}
         <div className="modal-header">
           <div className="modal-title">
-            <Compass size={18} color="#1B3B2B" />
+            <Compass size={18} color="var(--forest-800)" />
             <span>Nearby Campus Locations (BFS Queue Traversal)</span>
           </div>
           <button className="modal-close-btn" onClick={onClose}>
@@ -51,7 +51,7 @@ export function NearbyModal({
                 padding: '6px 10px',
                 borderRadius: '6px',
                 border: '1px solid var(--border-medium)',
-                background: '#FFFFFF',
+                background: 'var(--bg-surface)',
                 fontSize: '12px',
                 fontWeight: 600,
                 color: 'var(--text-primary)'

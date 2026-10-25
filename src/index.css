@@ -62,6 +62,62 @@
   --sidebar-width: 380px;
 }
 
+/* =========================================================================
+   DARK THEME SYSTEM (NOCTURNAL SLATE & EMERALD ARCHITECTURAL PALETTE)
+   ========================================================================= */
+
+[data-theme="dark"] {
+  /* Deep Obsidian & Slate Canvas */
+  --bg-canvas: #0E1310;          /* Deep nocturnal obsidian background */
+  --bg-surface: #141C16;         /* Elevated slate cards & panels */
+  --bg-subtle: #1B261F;          /* Stone charcoal secondary background */
+  --bg-ground: #0D120F;          /* Campus dark terrain ground */
+  --bg-lawn: #132419;            /* Deep muted spruce lawns */
+  --bg-water: #13242B;           /* Midnight pond & water features */
+  --bg-track: #281912;           /* Deep terracotta athletics ground */
+
+  /* Primary Accent: Radiant Collegiate Emerald */
+  --forest-900: #08140D;
+  --forest-800: #29824F;         /* Radiant emerald brand accent */
+  --forest-700: #34A063;
+  --forest-600: #42BC77;
+  --forest-100: #173222;
+  --forest-50:  #112519;
+
+  /* Secondary Accent: Warm Luminous Amber */
+  --orange-800: #D96B27;
+  --orange-600: #F6AD55;         /* Luminous warm amber */
+  --orange-500: #FBD38D;
+  --orange-100: #382414;
+  --orange-50:  #26180D;
+
+  /* Neutral Typography: High-Contrast Crisp Off-White */
+  --text-primary: #EEF4F0;       /* Crisp off-white */
+  --text-secondary: #A3B5A9;     /* Soft sage secondary text */
+  --text-muted: #6B7E72;         /* Footnotes, labels, hints */
+  --text-inverse: #0E1310;
+
+  /* Architectural Borders & Dividers */
+  --border-light: #1F2E23;
+  --border-medium: #2C4032;
+  --border-dark: #3F5746;
+
+  /* Elevation Shadows (Rich nocturnal ambient depth) */
+  --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.45);
+  --shadow-md: 0 4px 14px rgba(0, 0, 0, 0.55), 0 1px 3px rgba(0, 0, 0, 0.35);
+  --shadow-lg: 0 10px 28px rgba(0, 0, 0, 0.65), 0 2px 8px rgba(0, 0, 0, 0.4);
+  --shadow-float: 0 16px 42px rgba(0, 0, 0, 0.8), 0 4px 16px rgba(0, 0, 0, 0.5);
+
+  /* Pathway & Route Colors */
+  --path-default: #2A392F;
+  --path-stroke: #374C3F;
+  --route-primary: #38E085;      /* High-visibility emerald laser route */
+  --route-primary-glow: rgba(56, 224, 133, 0.45);
+  --route-alt: #F6AD55;          /* Warm golden amber alternative */
+  --route-alt-glow: rgba(246, 173, 85, 0.4);
+  --route-blocked: #FC8181;
+}
+
 /* Base Reset */
 *, *::before, *::after {
   box-sizing: border-box;
@@ -952,3 +1008,136 @@ html, body, #root {
     border-top: 1px solid var(--border-light);
   }
 }
+
+/* =========================================================================
+   THEME TOGGLE BUTTON & DYNAMIC THEME ENHANCEMENTS
+   ========================================================================= */
+
+.theme-toggle-btn {
+  border-color: var(--border-medium);
+  background-color: var(--bg-surface);
+  color: var(--text-primary);
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  font-weight: 700;
+  border-radius: 20px;
+  padding: 6px 14px;
+  box-shadow: var(--shadow-sm);
+  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.theme-toggle-btn:hover {
+  transform: translateY(-1px);
+  box-shadow: var(--shadow-md);
+  border-color: var(--forest-800);
+}
+
+[data-theme="dark"] .theme-toggle-btn {
+  background-color: #1A241D;
+  border-color: #2F4535;
+  color: #EDF5F0;
+  box-shadow: 0 0 12px rgba(56, 224, 133, 0.15);
+}
+
+[data-theme="dark"] .theme-toggle-btn:hover {
+  border-color: #38E085;
+  box-shadow: 0 0 16px rgba(56, 224, 133, 0.28);
+}
+
+/* Smooth theme transitions across surfaces */
+body, 
+.app-header, 
+.app-sidebar, 
+.map-canvas-container, 
+.modal-dialog, 
+.search-form-card, 
+.route-summary-card, 
+.directions-card,
+.location-input-field,
+.backend-indicator {
+  transition: background-color 0.25s ease, border-color 0.25s ease, color 0.2s ease, box-shadow 0.25s ease;
+}
+
+/* Dark Mode Overrides for Specific Components */
+[data-theme="dark"] .roadblock-section {
+  background-color: #171510;
+  border-color: #382717;
+}
+
+[data-theme="dark"] .roadblock-title {
+  color: #F6AD55;
+}
+
+[data-theme="dark"] .blocked-path-badge {
+  background-color: #2D1414;
+  color: #FC8181;
+  border-color: #4D2020;
+}
+
+[data-theme="dark"] .map-compass-badge,
+[data-theme="dark"] .map-legend-banner {
+  background-color: rgba(20, 28, 22, 0.94);
+  backdrop-filter: blur(8px);
+  border-color: var(--border-medium);
+  color: var(--text-secondary);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.6);
+}
+
+[data-theme="dark"] .map-compass-badge {
+  color: #68D391;
+}
+
+[data-theme="dark"] .map-control-btn {
+  background-color: var(--bg-surface);
+  border-color: var(--border-medium);
+  color: var(--text-primary);
+}
+
+[data-theme="dark"] .map-control-btn:hover {
+  background-color: var(--bg-subtle);
+  border-color: var(--forest-800);
+}
+
+[data-theme="dark"] .autocomplete-dropdown {
+  background-color: var(--bg-surface);
+  border-color: var(--border-medium);
+}
+
+[data-theme="dark"] .autocomplete-item:hover,
+[data-theme="dark"] .autocomplete-item.active {
+  background-color: var(--forest-100);
+}
+
+[data-theme="dark"] .sim-btn:hover {
+  background-color: #223227;
+}
+
+[data-theme="dark"] .direction-step-row:hover {
+  background-color: var(--bg-subtle);
+}
+
+[data-theme="dark"] .direction-step-row.active {
+  background-color: rgba(56, 224, 133, 0.08);
+  border-left-color: #38E085;
+}
+
+/* Custom Scrollbars */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--bg-canvas);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--border-medium);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--border-dark);
+}
+

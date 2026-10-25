@@ -43,7 +43,7 @@ export function DsaInspectorModal({
         {/* Modal Header */}
         <div className="modal-header">
           <div className="modal-title">
-            <Cpu size={18} color="#1B3B2B" />
+            <Cpu size={18} color="var(--forest-800)" />
             <span>DSA Laboratory & Algorithm Inspector</span>
             <span className="brand-badge">ACADEMIC AUDIT MODE</span>
           </div>
@@ -100,7 +100,7 @@ export function DsaInspectorModal({
                       const v = graph.getVertex(nodeId);
                       return (
                         <React.Fragment key={nodeId}>
-                          <span style={{ padding: '3px 8px', borderRadius: '4px', background: idx === 0 ? 'var(--forest-800)' : idx === activeRoute.path.length - 1 ? 'var(--orange-600)' : '#FFFFFF', color: (idx === 0 || idx === activeRoute.path.length - 1) ? '#FFFFFF' : 'var(--text-primary)', border: '1px solid var(--border-medium)', fontSize: '11px', fontWeight: 700, fontFamily: 'var(--font-mono)' }}>
+                          <span style={{ padding: '3px 8px', borderRadius: '4px', background: idx === 0 ? 'var(--forest-800)' : idx === activeRoute.path.length - 1 ? 'var(--orange-600)' : 'var(--bg-surface)', color: (idx === 0 || idx === activeRoute.path.length - 1) ? '#FFFFFF' : 'var(--text-primary)', border: '1px solid var(--border-medium)', fontSize: '11px', fontWeight: 700, fontFamily: 'var(--font-mono)' }}>
                             {v?.code || nodeId}
                           </span>
                           {idx < activeRoute.path.length - 1 && (
@@ -154,19 +154,19 @@ export function DsaInspectorModal({
                   </span>
                 </div>
                 <div style={{ display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: '8px', marginTop: '8px' }}>
-                  <div style={{ background: '#FFFFFF', padding: '6px 10px', borderRadius: '4px', border: '1px solid var(--border-light)' }}>
+                  <div style={{ background: 'var(--bg-surface)', padding: '6px 10px', borderRadius: '4px', border: '1px solid var(--border-light)' }}>
                     <span style={{ fontSize: '10px', color: 'var(--text-muted)' }}>BUCKET CAPACITY</span>
                     <strong style={{ display: 'block', fontSize: '14px', fontFamily: 'var(--font-mono)' }}>{htInspection.capacity}</strong>
                   </div>
-                  <div style={{ background: '#FFFFFF', padding: '6px 10px', borderRadius: '4px', border: '1px solid var(--border-light)' }}>
+                  <div style={{ background: 'var(--bg-surface)', padding: '6px 10px', borderRadius: '4px', border: '1px solid var(--border-light)' }}>
                     <span style={{ fontSize: '10px', color: 'var(--text-muted)' }}>STORED ENTRIES</span>
                     <strong style={{ display: 'block', fontSize: '14px', fontFamily: 'var(--font-mono)' }}>{htInspection.size}</strong>
                   </div>
-                  <div style={{ background: '#FFFFFF', padding: '6px 10px', borderRadius: '4px', border: '1px solid var(--border-light)' }}>
+                  <div style={{ background: 'var(--bg-surface)', padding: '6px 10px', borderRadius: '4px', border: '1px solid var(--border-light)' }}>
                     <span style={{ fontSize: '10px', color: 'var(--text-muted)' }}>COLLISION COUNT</span>
-                    <strong style={{ display: 'block', fontSize: '14px', fontFamily: 'var(--font-mono)', color: '#A84814' }}>{htInspection.collisionCount}</strong>
+                    <strong style={{ display: 'block', fontSize: '14px', fontFamily: 'var(--font-mono)', color: 'var(--orange-800)' }}>{htInspection.collisionCount}</strong>
                   </div>
-                  <div style={{ background: '#FFFFFF', padding: '6px 10px', borderRadius: '4px', border: '1px solid var(--border-light)' }}>
+                  <div style={{ background: 'var(--bg-surface)', padding: '6px 10px', borderRadius: '4px', border: '1px solid var(--border-light)' }}>
                     <span style={{ fontSize: '10px', color: 'var(--text-muted)' }}>LOAD FACTOR (α)</span>
                     <strong style={{ display: 'block', fontSize: '14px', fontFamily: 'var(--font-mono)' }}>{htInspection.loadFactor}</strong>
                   </div>
@@ -216,7 +216,7 @@ export function DsaInspectorModal({
                   </thead>
                   <tbody>
                     {htInspection.buckets.map((b) => (
-                      <tr key={b.index} style={{ borderBottom: '1px solid var(--border-light)', background: b.index === testHashVal ? 'var(--forest-50)' : '#FFFFFF' }}>
+                      <tr key={b.index} style={{ borderBottom: '1px solid var(--border-light)', background: b.index === testHashVal ? 'var(--forest-50)' : 'var(--bg-surface)' }}>
                         <td style={{ padding: '6px 10px', fontWeight: 700, color: 'var(--forest-800)' }}>
                           [{b.index.toString().padStart(2, '0')}]
                         </td>

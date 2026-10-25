@@ -38,6 +38,28 @@ export function useCampusNavigation() {
   const [nearbyOriginId, setNearbyOriginId] = useState('tcet_foyer');
   const [nearbyCategory, setNearbyCategory] = useState('all');
 
+  // Theme state ('light' | 'dark')
+  const [theme, setTheme] = useState(() => {
+    try {
+      const saved = localStorage.getItem('tcet_theme');
+      if (saved) return saved;
+      return (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) ? 'dark' : 'light';
+    } catch {
+      return 'light';
+    }
+  });
+
+  useEffect(() => {
+    document.documentElement.setAttribute('data-theme', theme);
+    try {
+      localStorage.setItem('tcet_theme', theme);
+    } catch {}
+  }, [theme]);
+
+  const toggleTheme = useCallback(() => {
+    setTheme(prev => (prev === 'light' ? 'dark' : 'light'));
+  }, []);
+
   // Backend mode
   const [backendMode, setBackendMode] = useState('client'); // 'client' | 'c_backend'
   const [cBackendStatus, setCBackendStatus] = useState('unknown'); // 'online' | 'offline' | 'checking'
@@ -318,6 +340,11 @@ export function useCampusNavigation() {
     backendMode,
     setBackendMode,
     cBackendStatus,
-    checkCBackend
+    checkCBackend,
+
+    // Theme (Light / Dark)
+    theme,
+    setTheme,
+    toggleTheme
   };
 }
