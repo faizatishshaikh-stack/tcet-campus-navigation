@@ -22,7 +22,8 @@ export function CampusMap({
   simulatedProgress,
   activeStepIndex,
   directions,
-  theme = 'light'
+  theme = 'light',
+  disableWheelZoom = false
 }) {
   const svgRef = useRef(null);
   const isDark = theme === 'dark';
@@ -83,6 +84,7 @@ export function CampusMap({
   };
 
   const handleWheel = (e) => {
+    if (disableWheelZoom) return;
     e.preventDefault();
     const factor = e.deltaY < 0 ? 0.92 : 1.08;
     handleZoom(factor);

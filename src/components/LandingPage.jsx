@@ -194,6 +194,7 @@ export function LandingPage({
                 activeStepIndex={0}
                 directions={[]}
                 theme={theme}
+                disableWheelZoom={true}
               />
 
               {/* Floating Live Telemetry Cards on Preview */}
