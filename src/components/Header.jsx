@@ -1,5 +1,4 @@
-import React from 'react';
-import { Compass, Cpu, Navigation, Sparkles, MapPin, Server, Activity, Sun, Moon, Layers } from 'lucide-react';
+import { Compass, Cpu, Navigation, MapPin, Sun, Moon, Home } from 'lucide-react';
 
 export function Header({
   onOpenDsaInspector,
@@ -12,12 +11,18 @@ export function Header({
   theme,
   onToggleTheme,
   isMobileDrawerCollapsed,
-  onToggleMobileDrawer
+  onToggleMobileDrawer,
+  onGoToLanding
 }) {
   return (
     <header className="app-header">
       {/* Brand & Crest - Apple Squircle Icon */}
-      <div className="brand-section">
+      <div 
+        className="brand-section" 
+        onClick={onGoToLanding}
+        style={{ cursor: onGoToLanding ? 'pointer' : 'default' }}
+        title={onGoToLanding ? 'Return to Landing Page' : 'TCET Smart Campus Navigation'}
+      >
         <div className="brand-logo-mark">
           <Compass size={20} strokeWidth={2.2} />
         </div>
@@ -34,6 +39,19 @@ export function Header({
 
       {/* Action Controls */}
       <div className="header-actions">
+        {/* Return to Home / Landing Button */}
+        {onGoToLanding && (
+          <button 
+            type="button" 
+            className="header-btn" 
+            onClick={onGoToLanding} 
+            title="Return to Home Landing Page"
+          >
+            <Home size={13} />
+            <span>Home</span>
+          </button>
+        )}
+
         {/* Mobile Drawer Trigger (Routes / Plan) */}
         {onToggleMobileDrawer && (
           <button 
