@@ -542,37 +542,37 @@ export const CAMPUS_PATHWAYS = [
 export const CATEGORY_METADATA = {
   academic: {
     label: 'Academic & Labs',
-    color: '#1B3B2B',       // Forest Green
-    badgeBg: '#E9F1EB',
-    badgeText: '#153123',
+    color: '#007AFF',       // Apple System Blue
+    badgeBg: '#EBF5FF',
+    badgeText: '#0062CC',
     icon: 'GraduationCap'
   },
   administrative: {
     label: 'Offices & Admin',
-    color: '#84421B',       // Terracotta
-    badgeBg: '#FCEFE8',
-    badgeText: '#6C3312',
+    color: '#5856D6',       // Apple System Indigo / Purple
+    badgeBg: '#F3F2FD',
+    badgeText: '#4340C7',
     icon: 'Building2'
   },
   amenity: {
     label: 'Dining & Services',
-    color: '#B85D1B',       // Muted Orange
-    badgeBg: '#FDF1E7',
-    badgeText: '#873F0D',
+    color: '#FF9500',       // Apple System Orange
+    badgeBg: '#FFF8EC',
+    badgeText: '#B26200',
     icon: 'Coffee'
   },
   recreational: {
     label: 'Sports & Cultural',
-    color: '#28587B',       // Slate Blue
-    badgeBg: '#EAF1F7',
-    badgeText: '#183B55',
+    color: '#34C759',       // Apple System Green
+    badgeBg: '#EDF9F0',
+    badgeText: '#1E823D',
     icon: 'Trophy'
   },
   transit: {
     label: 'Gates & Parking',
-    color: '#4A5568',       // Charcoal Slate
-    badgeBg: '#EDF0F3',
-    badgeText: '#2D3748',
+    color: '#5AC8FA',       // Apple System Teal / Cyan
+    badgeBg: '#EBF8FE',
+    badgeText: '#007AA6',
     icon: 'Compass'
   }
 };

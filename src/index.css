@@ -1,128 +1,174 @@
 /* =========================================================================
-   APEX SMART CAMPUS NAVIGATION - ARCHITECTURAL DESIGN SYSTEM
+   TCET SMART CAMPUS NAVIGATION - APPLE-INSPIRED DESIGN SYSTEM
+   Inspired by Apple Maps, iOS & macOS Human Interface Guidelines
    ========================================================================= */
 
 :root {
-  /* Warm Architectural Color Palette */
-  --bg-canvas: #F6F5EE;          /* Warm off-white parchment background */
-  --bg-surface: #FFFFFF;         /* Crisp white cards & panels */
-  --bg-subtle: #EFECE3;          /* Subtle stone beige background */
-  --bg-ground: #E7E3D8;          /* Campus map terrain ground */
-  --bg-lawn: #E2EADF;            /* Soft sage green garden quadrangles */
-  --bg-water: #DEE8EB;           /* Calming fountain & water features */
-  --bg-track: #EADCD4;           /* Terracotta athletics ground */
+  /* Apple System Palette (Light Mode) */
+  --bg-canvas: #F5F5F7;          /* Classic Apple soft grey background */
+  --bg-surface: #FFFFFF;         /* Crisp pure white elevated cards */
+  --bg-subtle: #EDEDF0;          /* Secondary surface background */
+  --bg-hover: #E5E5EA;           /* Hover state for buttons/pills */
+  --bg-translucent: rgba(255, 255, 255, 0.82); /* Frosted glass panel backdrop */
+  --bg-translucent-card: rgba(255, 255, 255, 0.72);
 
-  /* Primary Accent: Deep Collegiate Forest Green */
-  --forest-900: #0F2319;
-  --forest-800: #1B3B2B;         /* Primary brand color */
-  --forest-700: #254F3A;
-  --forest-600: #32644B;
-  --forest-100: #E6EFEA;
-  --forest-50:  #F2F7F4;
+  /* Apple Maps Campus Terrain */
+  --bg-ground: #EAEAEF;          /* Apple Maps light terrain */
+  --bg-lawn: #DCE8DC;            /* Apple Maps gentle park sage green */
+  --bg-water: #D4E8F4;           /* Apple Maps tranquil fountain water */
+  --bg-track: #EADCD2;           /* Athletics track terracotta */
 
-  /* Secondary Accent: Muted Architectural Terracotta / Orange */
-  --orange-800: #A84814;
-  --orange-600: #D96B27;         /* Accent highlight */
-  --orange-500: #E87A36;
-  --orange-100: #FCEFE6;
-  --orange-50:  #FDF7F2;
+  /* Apple System Blue Accent */
+  --apple-blue: #007AFF;         /* Signature Apple Blue */
+  --apple-blue-hover: #0066D6;   /* Active / pressed state */
+  --apple-blue-subtle: rgba(0, 122, 255, 0.08); /* Selection tint */
+  --apple-blue-border: rgba(0, 122, 255, 0.22);
+  --apple-blue-glow: rgba(0, 122, 255, 0.35);
 
-  /* Neutral Typography: Dark Charcoal & Warm Grays */
-  --text-primary: #1C221F;       /* High-contrast dark charcoal */
-  --text-secondary: #4F5852;     /* Muted secondary body text */
-  --text-muted: #79847D;         /* Labels, hints, footnotes */
+  /* Apple Semantic Accents */
+  --apple-green: #34C759;        /* Success / walk progress / Start */
+  --apple-green-subtle: rgba(52, 199, 89, 0.12);
+  --apple-orange: #FF9500;       /* Warning / destination / alt route */
+  --apple-orange-subtle: rgba(255, 149, 0, 0.12);
+  --apple-red: #FF3B30;          /* Roadblock / disconnect alert */
+  --apple-red-subtle: rgba(255, 59, 48, 0.1);
+  --apple-purple: #5856D6;       /* Admin & Services */
+  --apple-teal: #5AC8FA;         /* Transit & Gates */
+
+  /* Backward Compatibility Aliases for components */
+  --forest-900: #004C99;
+  --forest-800: #007AFF;         /* Re-mapped to Apple Blue */
+  --forest-700: #0066D6;
+  --forest-600: #007AFF;
+  --forest-100: rgba(0, 122, 255, 0.09);
+  --forest-50:  rgba(0, 122, 255, 0.04);
+
+  --orange-800: #D97706;
+  --orange-600: #FF9500;         /* Re-mapped to Apple Orange */
+  --orange-500: #FFA826;
+  --orange-100: rgba(255, 149, 0, 0.12);
+  --orange-50:  rgba(255, 149, 0, 0.05);
+
+  /* Apple System Typography Colors */
+  --text-primary: #1D1D1F;       /* Apple primary high-contrast text */
+  --text-secondary: #6E6E73;     /* Apple secondary descriptive text */
+  --text-muted: #86868B;         /* Apple tertiary / footnote text */
   --text-inverse: #FFFFFF;
 
-  /* Architectural Borders & Dividers */
-  --border-light: #E5E1D6;
-  --border-medium: #D1CBC0;
-  --border-dark: #A8A093;
+  /* Apple Delicate Borders */
+  --border-light: rgba(0, 0, 0, 0.06);
+  --border-medium: rgba(0, 0, 0, 0.10);
+  --border-dark: rgba(0, 0, 0, 0.16);
 
-  /* Elevation Shadows (Subtle, crisp, non-blurry) */
-  --shadow-sm: 0 1px 2px rgba(27, 34, 30, 0.05);
-  --shadow-md: 0 4px 12px rgba(27, 34, 30, 0.08), 0 1px 3px rgba(27, 34, 30, 0.04);
-  --shadow-lg: 0 10px 24px rgba(27, 34, 30, 0.12), 0 2px 6px rgba(27, 34, 30, 0.04);
-  --shadow-float: 0 14px 34px rgba(27, 34, 30, 0.16), 0 4px 12px rgba(27, 34, 30, 0.08);
+  /* Apple Diffused Elevation Shadows */
+  --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.04), 0 1px 1px rgba(0, 0, 0, 0.02);
+  --shadow-md: 0 4px 14px rgba(0, 0, 0, 0.06), 0 1px 3px rgba(0, 0, 0, 0.03);
+  --shadow-lg: 0 10px 28px rgba(0, 0, 0, 0.08), 0 2px 8px rgba(0, 0, 0, 0.03);
+  --shadow-float: 0 20px 48px rgba(0, 0, 0, 0.12), 0 4px 14px rgba(0, 0, 0, 0.05);
 
-  /* Pathway & Route Colors */
-  --path-default: #C8C2B3;
-  --path-stroke: #B5AD9C;
-  --route-primary: #1B3B2B;
-  --route-primary-glow: rgba(27, 59, 43, 0.35);
-  --route-alt: #D96B27;
-  --route-alt-glow: rgba(217, 107, 39, 0.3);
-  --route-blocked: #D93829;
+  /* Apple Maps Route Rendering */
+  --path-default: #D1D1D6;
+  --path-stroke: #C7C7CC;
+  --route-primary: #007AFF;      /* Apple Maps Vibrant Blue */
+  --route-primary-glow: rgba(0, 122, 255, 0.38);
+  --route-alt: #5AC8FA;          /* Apple Maps Light Blue alternative */
+  --route-alt-glow: rgba(90, 200, 250, 0.35);
+  --route-blocked: #FF3B30;
 
-  /* Typography */
-  --font-sans: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-  --font-mono: 'JetBrains Mono', 'SF Mono', Consolas, monospace;
+  /* Typography Stack */
+  --font-sans: -apple-system, BlinkMacSystemFont, "SF Pro Display", "SF Pro Text", "Inter", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  --font-mono: "SF Mono", Menlo, Monaco, Consolas, "JetBrains Mono", monospace;
 
   /* Layout dimensions */
-  --header-height: 60px;
-  --sidebar-width: 380px;
+  --header-height: 56px;
+  --sidebar-width: 390px;
 }
 
 /* =========================================================================
-   DARK THEME SYSTEM (NOCTURNAL SLATE & EMERALD ARCHITECTURAL PALETTE)
+   DARK THEME SYSTEM (APPLE DARK MODE / OLED OBSIDIAN)
    ========================================================================= */
 
 [data-theme="dark"] {
-  /* Deep Obsidian & Slate Canvas */
-  --bg-canvas: #0E1310;          /* Deep nocturnal obsidian background */
-  --bg-surface: #141C16;         /* Elevated slate cards & panels */
-  --bg-subtle: #1B261F;          /* Stone charcoal secondary background */
-  --bg-ground: #0D120F;          /* Campus dark terrain ground */
-  --bg-lawn: #132419;            /* Deep muted spruce lawns */
-  --bg-water: #13242B;           /* Midnight pond & water features */
-  --bg-track: #281912;           /* Deep terracotta athletics ground */
+  /* Deep Obsidian & Apple Dark Canvas */
+  --bg-canvas: #000000;          /* Apple OLED black */
+  --bg-surface: #1C1C1E;         /* Apple System Gray 6 Dark surface */
+  --bg-subtle: #2C2C2E;          /* Apple System Gray 5 Dark */
+  --bg-hover: #3A3A3C;           /* Apple System Gray 4 Dark */
+  --bg-translucent: rgba(28, 28, 30, 0.82);
+  --bg-translucent-card: rgba(28, 28, 30, 0.72);
 
-  /* Primary Accent: Radiant Collegiate Emerald */
-  --forest-900: #08140D;
-  --forest-800: #29824F;         /* Radiant emerald brand accent */
-  --forest-700: #34A063;
-  --forest-600: #42BC77;
-  --forest-100: #173222;
-  --forest-50:  #112519;
+  /* Apple Maps Dark Terrain */
+  --bg-ground: #121214;          /* Apple Maps nocturnal base */
+  --bg-lawn: #16261A;            /* Apple Maps nocturnal lawn */
+  --bg-water: #142834;           /* Apple Maps nocturnal reservoir */
+  --bg-track: #281D17;
 
-  /* Secondary Accent: Warm Luminous Amber */
-  --orange-800: #D96B27;
-  --orange-600: #F6AD55;         /* Luminous warm amber */
-  --orange-500: #FBD38D;
-  --orange-100: #382414;
-  --orange-50:  #26180D;
+  /* Apple Blue Dark Mode Accent */
+  --apple-blue: #0A84FF;         /* Apple System Blue Dark */
+  --apple-blue-hover: #409CFF;
+  --apple-blue-subtle: rgba(10, 132, 255, 0.16);
+  --apple-blue-border: rgba(10, 132, 255, 0.32);
+  --apple-blue-glow: rgba(10, 132, 255, 0.5);
 
-  /* Neutral Typography: High-Contrast Crisp Off-White */
-  --text-primary: #EEF4F0;       /* Crisp off-white */
-  --text-secondary: #A3B5A9;     /* Soft sage secondary text */
-  --text-muted: #6B7E72;         /* Footnotes, labels, hints */
-  --text-inverse: #0E1310;
+  --apple-green: #30D158;        /* Apple System Green Dark */
+  --apple-green-subtle: rgba(48, 209, 88, 0.16);
+  --apple-orange: #FF9F0A;       /* Apple System Orange Dark */
+  --apple-orange-subtle: rgba(255, 159, 10, 0.16);
+  --apple-red: #FF453A;          /* Apple System Red Dark */
+  --apple-red-subtle: rgba(255, 69, 58, 0.16);
+  --apple-purple: #5E5CE6;
+  --apple-teal: #64D2FF;
 
-  /* Architectural Borders & Dividers */
-  --border-light: #1F2E23;
-  --border-medium: #2C4032;
-  --border-dark: #3F5746;
+  /* Re-mapped Aliases */
+  --forest-900: #06407A;
+  --forest-800: #0A84FF;
+  --forest-700: #409CFF;
+  --forest-600: #66B0FF;
+  --forest-100: rgba(10, 132, 255, 0.18);
+  --forest-50:  rgba(10, 132, 255, 0.08);
 
-  /* Elevation Shadows (Rich nocturnal ambient depth) */
-  --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.45);
-  --shadow-md: 0 4px 14px rgba(0, 0, 0, 0.55), 0 1px 3px rgba(0, 0, 0, 0.35);
-  --shadow-lg: 0 10px 28px rgba(0, 0, 0, 0.65), 0 2px 8px rgba(0, 0, 0, 0.4);
-  --shadow-float: 0 16px 42px rgba(0, 0, 0, 0.8), 0 4px 16px rgba(0, 0, 0, 0.5);
+  --orange-800: #FF9F0A;
+  --orange-600: #FFB340;
+  --orange-500: #FFC466;
+  --orange-100: rgba(255, 159, 10, 0.18);
+  --orange-50:  rgba(255, 159, 10, 0.08);
 
-  /* Pathway & Route Colors */
-  --path-default: #2A392F;
-  --path-stroke: #374C3F;
-  --route-primary: #38E085;      /* High-visibility emerald laser route */
-  --route-primary-glow: rgba(56, 224, 133, 0.45);
-  --route-alt: #F6AD55;          /* Warm golden amber alternative */
-  --route-alt-glow: rgba(246, 173, 85, 0.4);
-  --route-blocked: #FC8181;
+  /* Apple Dark Mode Typography */
+  --text-primary: #F5F5F7;       /* Apple light off-white */
+  --text-secondary: #A1A1A6;     /* Apple system gray 2 */
+  --text-muted: #86868B;         /* Apple system gray 3 */
+  --text-inverse: #000000;
+
+  /* Subtle Dark Borders */
+  --border-light: rgba(255, 255, 255, 0.08);
+  --border-medium: rgba(255, 255, 255, 0.14);
+  --border-dark: rgba(255, 255, 255, 0.24);
+
+  /* Deep Diffused Shadows */
+  --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.6);
+  --shadow-md: 0 4px 16px rgba(0, 0, 0, 0.7), 0 1px 3px rgba(0, 0, 0, 0.4);
+  --shadow-lg: 0 12px 32px rgba(0, 0, 0, 0.8), 0 2px 8px rgba(0, 0, 0, 0.5);
+  --shadow-float: 0 22px 54px rgba(0, 0, 0, 0.9), 0 6px 20px rgba(0, 0, 0, 0.6);
+
+  /* Apple Maps Dark Route */
+  --path-default: #2C2C2E;
+  --path-stroke: #3A3A3C;
+  --route-primary: #0A84FF;      /* High visibility laser Apple blue */
+  --route-primary-glow: rgba(10, 132, 255, 0.55);
+  --route-alt: #FF9F0A;
+  --route-alt-glow: rgba(255, 159, 10, 0.4);
+  --route-blocked: #FF453A;
 }
 
-/* Base Reset */
+/* =========================================================================
+   BASE RESET & TYPOGRAPHY
+   ========================================================================= */
+
 *, *::before, *::after {
   box-sizing: border-box;
   margin: 0;
   padding: 0;
+  -webkit-tap-highlight-color: transparent;
 }
 
 html, body, #root {
@@ -134,6 +180,7 @@ html, body, #root {
   color: var(--text-primary);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
 }
 
 /* Master App Container */
@@ -141,41 +188,56 @@ html, body, #root {
   display: flex;
   flex-direction: column;
   height: 100vh;
+  height: 100dvh; /* Mobile full viewport height */
   width: 100vw;
   overflow: hidden;
   background-color: var(--bg-canvas);
+  position: relative;
 }
 
-/* App Header */
+/* =========================================================================
+   APPLE-STYLE TRANSLUCENT HEADER BAR
+   ========================================================================= */
+
 .app-header {
   height: var(--header-height);
-  background-color: var(--bg-surface);
+  background-color: var(--bg-translucent);
+  backdrop-filter: blur(20px) saturate(180%);
+  -webkit-backdrop-filter: blur(20px) saturate(180%);
   border-bottom: 1px solid var(--border-light);
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 0 20px;
-  z-index: 40;
+  padding: 0 18px;
+  z-index: 50;
   flex-shrink: 0;
-  box-shadow: var(--shadow-sm);
+  box-shadow: 0 1px 0 rgba(0, 0, 0, 0.04);
+  position: relative;
 }
 
 .brand-section {
   display: flex;
   align-items: center;
-  gap: 14px;
+  gap: 12px;
 }
 
+/* Apple App Icon Squircle */
 .brand-logo-mark {
-  width: 38px;
-  height: 38px;
-  background-color: var(--forest-800);
-  color: var(--text-inverse);
-  border-radius: 8px;
+  width: 36px;
+  height: 36px;
+  background: linear-gradient(135deg, #007AFF 0%, #0051A8 100%);
+  color: #FFFFFF;
+  border-radius: 9px;
   display: flex;
   align-items: center;
   justify-content: center;
-  box-shadow: 0 2px 6px rgba(27, 59, 43, 0.25);
+  box-shadow: 0 2px 8px rgba(0, 122, 255, 0.32), inset 0 1px 1px rgba(255, 255, 255, 0.35);
+  flex-shrink: 0;
+}
+
+[data-theme="dark"] .brand-logo-mark {
+  background: linear-gradient(135deg, #0A84FF 0%, #0056B3 100%);
+  box-shadow: 0 2px 10px rgba(10, 132, 255, 0.45), inset 0 1px 1px rgba(255, 255, 255, 0.4);
 }
 
 .brand-text-block {
@@ -184,119 +246,180 @@ html, body, #root {
 }
 
 .brand-title {
-  font-size: 15px;
+  font-size: 14.5px;
   font-weight: 700;
   color: var(--text-primary);
-  letter-spacing: -0.01em;
+  letter-spacing: -0.015em;
   display: flex;
   align-items: center;
   gap: 8px;
+  line-height: 1.25;
 }
 
 .brand-badge {
-  font-family: var(--font-mono);
+  font-family: var(--font-sans);
   font-size: 10px;
   font-weight: 600;
-  padding: 2px 6px;
-  background-color: var(--forest-100);
-  color: var(--forest-800);
-  border-radius: 4px;
-  letter-spacing: 0.04em;
+  padding: 1.5px 7px;
+  background-color: var(--apple-blue-subtle);
+  color: var(--apple-blue);
+  border-radius: 980px; /* Apple capsule pill */
+  letter-spacing: 0.02em;
+  border: 1px solid var(--apple-blue-border);
 }
 
 .brand-subtext {
   font-size: 11px;
   color: var(--text-muted);
+  letter-spacing: -0.005em;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
+/* Header Actions Controls */
 .header-actions {
   display: flex;
   align-items: center;
-  gap: 10px;
+  gap: 8px;
 }
 
+/* Apple Pill Header Buttons */
 .header-btn {
   display: inline-flex;
   align-items: center;
+  justify-content: center;
   gap: 6px;
-  padding: 7px 12px;
+  padding: 6px 12px;
+  min-height: 32px;
   font-size: 12px;
-  font-weight: 600;
-  border-radius: 6px;
+  font-weight: 500;
+  font-family: var(--font-sans);
+  border-radius: 980px; /* Apple rounded capsule */
   border: 1px solid var(--border-medium);
   background-color: var(--bg-surface);
-  color: var(--text-secondary);
+  color: var(--text-primary);
   cursor: pointer;
-  transition: all 0.15s ease;
+  transition: all 0.18s cubic-bezier(0.16, 1, 0.3, 1);
+  box-shadow: var(--shadow-sm);
 }
 
 .header-btn:hover {
-  background-color: var(--bg-subtle);
-  color: var(--text-primary);
+  background-color: var(--bg-hover);
   border-color: var(--border-dark);
+  transform: translateY(-0.5px);
+}
+
+.header-btn:active {
+  transform: scale(0.98);
 }
 
 .header-btn.primary {
-  background-color: var(--forest-800);
-  color: var(--text-inverse);
-  border-color: var(--forest-900);
+  background-color: var(--apple-blue);
+  color: #FFFFFF;
+  border-color: transparent;
+  font-weight: 600;
+  box-shadow: 0 2px 8px rgba(0, 122, 255, 0.28);
 }
 
 .header-btn.primary:hover {
-  background-color: var(--forest-700);
+  background-color: var(--apple-blue-hover);
+  box-shadow: 0 4px 12px rgba(0, 122, 255, 0.38);
+}
+
+.header-btn.primary:active {
+  transform: scale(0.97);
 }
 
 .header-btn.active {
-  background-color: var(--orange-100);
-  color: var(--orange-800);
-  border-color: var(--orange-600);
+  background-color: var(--apple-orange-subtle);
+  color: var(--apple-orange);
+  border-color: rgba(255, 149, 0, 0.3);
 }
 
+/* Roadblock indicator in header */
+.header-warning-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  padding: 5px 10px;
+  font-size: 11px;
+  font-weight: 600;
+  border-radius: 980px;
+  background-color: var(--apple-red-subtle);
+  border: 1px solid rgba(255, 59, 48, 0.25);
+  color: var(--apple-red);
+}
+
+/* Apple Segmented / Status Pill */
 .backend-indicator {
   display: inline-flex;
   align-items: center;
   gap: 6px;
-  padding: 5px 10px;
+  padding: 5px 11px;
+  min-height: 30px;
   font-size: 11px;
   font-family: var(--font-mono);
-  border-radius: 20px;
-  background-color: var(--bg-subtle);
-  border: 1px solid var(--border-light);
+  border-radius: 980px;
+  background-color: var(--bg-surface);
+  border: 1px solid var(--border-medium);
   color: var(--text-secondary);
   cursor: pointer;
-  transition: all 0.15s ease;
+  transition: all 0.18s ease;
+  box-shadow: var(--shadow-sm);
 }
 
 .backend-indicator:hover {
-  border-color: var(--border-medium);
-  background-color: #E8E5DC;
+  background-color: var(--bg-hover);
+  border-color: var(--border-dark);
 }
 
 .status-dot {
-  width: 7px;
-  height: 7px;
+  width: 6.5px;
+  height: 6.5px;
   border-radius: 50%;
-  background-color: #8C948F;
+  background-color: var(--text-muted);
 }
 
 .status-dot.online {
-  background-color: #2E8B57;
-  box-shadow: 0 0 0 2px rgba(46, 139, 87, 0.2);
+  background-color: var(--apple-green);
+  box-shadow: 0 0 0 2px rgba(52, 199, 89, 0.25);
 }
 
 .status-dot.client {
-  background-color: var(--forest-800);
+  background-color: var(--apple-blue);
+  box-shadow: 0 0 0 2px rgba(0, 122, 255, 0.25);
 }
 
-/* Main Workspace */
+/* Theme Toggle Button */
+.theme-toggle-btn {
+  border-radius: 980px;
+  padding: 6px 12px;
+  font-weight: 500;
+}
+
+/* Mobile drawer trigger in header (hidden on desktop) */
+.mobile-drawer-toggle-btn {
+  display: none;
+}
+
+/* =========================================================================
+   MAIN WORKSPACE & SPLIT VIEW
+   ========================================================================= */
+
 .app-workspace {
   display: flex;
   flex: 1;
   position: relative;
   overflow: hidden;
+  height: calc(100vh - var(--header-height));
+  height: calc(100dvh - var(--header-height));
 }
 
-/* Sidebar Navigation */
+/* =========================================================================
+   APPLE MAPS FLOATING / INSET SIDEBAR
+   ========================================================================= */
+
 .app-sidebar {
   width: var(--sidebar-width);
   background-color: var(--bg-surface);
@@ -306,34 +429,53 @@ html, body, #root {
   height: 100%;
   z-index: 30;
   box-shadow: var(--shadow-md);
-  transition: transform 0.25s ease;
+  transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.3s ease;
   overflow-y: auto;
   overflow-x: hidden;
+  flex-shrink: 0;
 }
 
 .sidebar-scroll-content {
   padding: 16px;
   display: flex;
   flex-direction: column;
-  gap: 16px;
+  gap: 14px;
 }
 
-/* Quick Access Chips */
-.quick-access-bar {
-  display: flex;
-  flex-direction: column;
-  gap: 8px;
+/* Mobile Bottom Sheet Handle Notch (hidden on desktop) */
+.mobile-sheet-handle {
+  display: none;
+  width: 100%;
+  padding: 8px 0 4px;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
 }
 
+.sheet-notch {
+  width: 36px;
+  height: 4.5px;
+  border-radius: 980px;
+  background-color: var(--border-dark);
+}
+
+/* Section Header Typography */
 .section-label {
   font-size: 11px;
-  font-weight: 700;
+  font-weight: 600;
   text-transform: uppercase;
   letter-spacing: 0.05em;
   color: var(--text-muted);
   display: flex;
   align-items: center;
   justify-content: space-between;
+}
+
+/* Quick Access Pills */
+.quick-access-bar {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
 }
 
 .quick-pills-row {
@@ -346,39 +488,49 @@ html, body, #root {
   display: inline-flex;
   align-items: center;
   gap: 5px;
-  padding: 5px 9px;
-  font-size: 11px;
-  font-weight: 600;
+  padding: 6px 11px;
+  min-height: 28px;
+  font-size: 11.5px;
+  font-weight: 500;
   background-color: var(--bg-subtle);
   border: 1px solid var(--border-light);
-  color: var(--text-secondary);
-  border-radius: 6px;
+  color: var(--text-primary);
+  border-radius: 980px; /* Apple pill */
   cursor: pointer;
-  transition: all 0.15s ease;
+  transition: all 0.16s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 .quick-pill:hover {
-  background-color: var(--forest-100);
-  color: var(--forest-800);
-  border-color: #BFD8C9;
+  background-color: var(--apple-blue-subtle);
+  color: var(--apple-blue);
+  border-color: var(--apple-blue-border);
+  transform: translateY(-0.5px);
 }
 
-/* Search Box Form */
+.quick-pill:active {
+  transform: scale(0.97);
+}
+
+/* =========================================================================
+   SEARCH FORM CARD (APPLE MAPS WAYPOINT INPUTS)
+   ========================================================================= */
+
 .search-form-card {
-  background-color: var(--bg-canvas);
-  border: 1px solid var(--border-medium);
-  border-radius: 8px;
-  padding: 12px;
+  background-color: var(--bg-surface);
+  border: 1px solid var(--border-light);
+  border-radius: 14px; /* Apple smooth corner radius */
+  padding: 14px;
   display: flex;
   flex-direction: column;
-  gap: 10px;
+  gap: 12px;
+  box-shadow: var(--shadow-sm);
 }
 
 .input-endpoint-group {
   position: relative;
   display: flex;
   align-items: center;
-  gap: 8px;
+  gap: 10px;
 }
 
 .endpoint-icon-pin {
@@ -388,19 +540,20 @@ html, body, #root {
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 10px;
-  font-weight: 800;
-  font-family: var(--font-mono);
+  font-size: 11px;
+  font-weight: 700;
+  font-family: var(--font-sans);
   flex-shrink: 0;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.15);
 }
 
 .endpoint-icon-pin.start {
-  background-color: var(--forest-800);
+  background-color: var(--apple-blue);
   color: #FFFFFF;
 }
 
 .endpoint-icon-pin.dest {
-  background-color: var(--orange-600);
+  background-color: var(--apple-orange);
   color: #FFFFFF;
 }
 
@@ -409,64 +562,67 @@ html, body, #root {
   flex: 1;
 }
 
+/* Apple Search Input Field */
 .location-input-field {
   width: 100%;
-  padding: 8px 10px;
+  padding: 9px 12px;
   font-size: 13px;
   font-family: var(--font-sans);
   color: var(--text-primary);
-  background-color: var(--bg-surface);
+  background-color: var(--bg-canvas);
   border: 1px solid var(--border-light);
-  border-radius: 6px;
+  border-radius: 10px; /* Smooth rounded rectangle */
   outline: none;
-  transition: border-color 0.15s ease, box-shadow 0.15s ease;
+  transition: border-color 0.18s ease, box-shadow 0.18s ease, background-color 0.18s ease;
 }
 
 .location-input-field:focus {
-  border-color: var(--forest-800);
-  box-shadow: 0 0 0 2px var(--forest-100);
+  background-color: var(--bg-surface);
+  border-color: var(--apple-blue);
+  box-shadow: 0 0 0 3px rgba(0, 122, 255, 0.18);
 }
 
 .swap-btn-row {
   display: flex;
   justify-content: flex-end;
-  padding: 0 4px;
+  padding: 0 2px;
 }
 
 .swap-endpoints-btn {
-  background: none;
+  background: var(--bg-subtle);
   border: 1px solid var(--border-light);
-  background-color: var(--bg-surface);
-  border-radius: 4px;
-  padding: 3px 8px;
+  border-radius: 980px;
+  padding: 3px 9px;
   font-size: 11px;
-  font-weight: 600;
+  font-weight: 500;
   color: var(--text-secondary);
   cursor: pointer;
   display: inline-flex;
   align-items: center;
   gap: 4px;
-  transition: all 0.15s ease;
+  transition: all 0.16s ease;
 }
 
 .swap-endpoints-btn:hover {
-  background-color: var(--bg-subtle);
+  background-color: var(--bg-hover);
   color: var(--text-primary);
+  border-color: var(--border-medium);
 }
 
-/* Autocomplete Dropdown */
+/* Autocomplete Dropdown - Apple Spotlight Style */
 .autocomplete-dropdown {
   position: absolute;
-  top: calc(100% + 4px);
+  top: calc(100% + 6px);
   left: 0;
   right: 0;
   background-color: var(--bg-surface);
   border: 1px solid var(--border-medium);
-  border-radius: 6px;
-  box-shadow: var(--shadow-lg);
-  max-height: 220px;
+  border-radius: 12px;
+  box-shadow: var(--shadow-float);
+  max-height: 240px;
   overflow-y: auto;
   z-index: 100;
+  padding: 4px;
 }
 
 .autocomplete-item {
@@ -475,38 +631,120 @@ html, body, #root {
   align-items: center;
   justify-content: space-between;
   cursor: pointer;
-  border-bottom: 1px solid var(--border-light);
-  transition: background-color 0.15s ease;
-}
-
-.autocomplete-item:last-child {
-  border-bottom: none;
+  border-radius: 8px;
+  transition: background-color 0.14s ease;
+  margin-bottom: 1px;
 }
 
 .autocomplete-item:hover, .autocomplete-item.active {
-  background-color: var(--forest-50);
+  background-color: var(--apple-blue-subtle);
 }
 
 .autocomplete-item-name {
-  font-size: 12px;
-  font-weight: 600;
+  font-size: 12.5px;
+  font-weight: 500;
   color: var(--text-primary);
 }
 
 .autocomplete-item-code {
   font-family: var(--font-mono);
   font-size: 10px;
-  padding: 1px 5px;
+  font-weight: 600;
+  padding: 2px 6px;
   background-color: var(--bg-subtle);
-  border-radius: 3px;
-  color: var(--text-muted);
+  border-radius: 6px;
+  color: var(--text-secondary);
 }
 
-/* Route Summary Panel */
+/* =========================================================================
+   ROADBLOCK MANAGER CARD
+   ========================================================================= */
+
+.roadblock-section {
+  background-color: var(--bg-surface);
+  border: 1px solid var(--border-light);
+  border-radius: 14px;
+  padding: 13px 14px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  box-shadow: var(--shadow-sm);
+}
+
+.roadblock-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.roadblock-title {
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--text-primary);
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.toggle-block-mode-btn {
+  padding: 4px 10px;
+  font-size: 11px;
+  font-weight: 600;
+  border-radius: 980px;
+  border: 1px solid var(--border-medium);
+  background-color: var(--bg-subtle);
+  color: var(--text-secondary);
+  cursor: pointer;
+  transition: all 0.16s ease;
+}
+
+.toggle-block-mode-btn:hover {
+  background-color: var(--bg-hover);
+  color: var(--text-primary);
+}
+
+.toggle-block-mode-btn.active {
+  background-color: var(--apple-orange);
+  color: #FFFFFF;
+  border-color: transparent;
+  box-shadow: 0 2px 6px rgba(255, 149, 0, 0.35);
+}
+
+.blocked-paths-chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  align-items: center;
+}
+
+.blocked-path-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  padding: 3px 8px;
+  font-size: 10.5px;
+  font-weight: 500;
+  background-color: var(--apple-red-subtle);
+  color: var(--apple-red);
+  border: 1px solid rgba(255, 59, 48, 0.2);
+  border-radius: 980px;
+}
+
+.remove-block-x {
+  cursor: pointer;
+  font-weight: 800;
+  font-size: 12px;
+  line-height: 1;
+}
+
+/* =========================================================================
+   ROUTE SUMMARY PANEL (APPLE MAPS ROUTE CARD)
+   ========================================================================= */
+
 .route-summary-card {
   background-color: var(--bg-surface);
   border: 1px solid var(--border-light);
-  border-radius: 8px;
+  border-radius: 14px;
   padding: 14px;
   display: flex;
   flex-direction: column;
@@ -514,39 +752,46 @@ html, body, #root {
   box-shadow: var(--shadow-sm);
 }
 
+/* Apple Capsule Segmented Controls */
 .route-header-tabs {
   display: flex;
-  gap: 8px;
-  border-bottom: 1px solid var(--border-light);
-  padding-bottom: 8px;
+  gap: 4px;
+  background-color: var(--bg-subtle);
+  padding: 3px;
+  border-radius: 10px;
 }
 
 .route-tab-btn {
   flex: 1;
-  padding: 6px 8px;
-  font-size: 11px;
-  font-weight: 700;
+  padding: 6px 10px;
+  font-size: 11.5px;
+  font-weight: 600;
   text-align: center;
-  border: 1px solid var(--border-light);
-  background-color: var(--bg-subtle);
-  border-radius: 6px;
+  border: none;
+  background: transparent;
+  border-radius: 7px;
   cursor: pointer;
   color: var(--text-secondary);
-  transition: all 0.15s ease;
+  transition: all 0.18s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.route-tab-btn:hover {
+  color: var(--text-primary);
 }
 
 .route-tab-btn.active.primary {
-  background-color: var(--forest-800);
-  color: #FFFFFF;
-  border-color: var(--forest-900);
+  background-color: var(--bg-surface);
+  color: var(--apple-blue);
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.08);
 }
 
 .route-tab-btn.active.alternative {
-  background-color: var(--orange-600);
-  color: #FFFFFF;
-  border-color: var(--orange-800);
+  background-color: var(--bg-surface);
+  color: var(--apple-orange);
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.08);
 }
 
+/* Route Metrics Grid */
 .route-metrics-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
@@ -556,24 +801,28 @@ html, body, #root {
 .metric-tile {
   background-color: var(--bg-canvas);
   border: 1px solid var(--border-light);
-  border-radius: 6px;
-  padding: 8px;
+  border-radius: 10px;
+  padding: 10px 8px;
   display: flex;
   flex-direction: column;
+  text-align: center;
 }
 
 .metric-value {
   font-size: 16px;
-  font-weight: 800;
-  color: var(--forest-800);
-  font-family: var(--font-mono);
+  font-weight: 700;
+  color: var(--text-primary);
+  font-family: var(--font-sans);
+  letter-spacing: -0.02em;
 }
 
 .metric-label {
-  font-size: 10px;
+  font-size: 9.5px;
   font-weight: 600;
   color: var(--text-muted);
   text-transform: uppercase;
+  letter-spacing: 0.04em;
+  margin-top: 2px;
 }
 
 /* Simulation Controls */
@@ -589,43 +838,54 @@ html, body, #root {
   align-items: center;
   justify-content: center;
   gap: 6px;
-  padding: 8px 12px;
-  font-size: 12px;
-  font-weight: 700;
-  border-radius: 6px;
+  padding: 9px 14px;
+  min-height: 38px;
+  font-size: 12.5px;
+  font-weight: 600;
+  border-radius: 10px;
   border: 1px solid var(--border-medium);
-  background-color: var(--bg-subtle);
-  color: var(--text-primary);
+  background-color: var(--bg-surface);
+  color: var(--apple-blue);
   cursor: pointer;
-  transition: all 0.15s ease;
+  transition: all 0.18s cubic-bezier(0.16, 1, 0.3, 1);
+  box-shadow: var(--shadow-sm);
 }
 
 .sim-btn:hover {
-  background-color: #E5E1D4;
+  background-color: var(--apple-blue-subtle);
+  border-color: var(--apple-blue-border);
+}
+
+.sim-btn:active {
+  transform: scale(0.98);
 }
 
 .sim-btn.running {
-  background-color: var(--orange-100);
-  color: var(--orange-800);
-  border-color: var(--orange-600);
+  background-color: var(--apple-orange-subtle);
+  color: var(--apple-orange);
+  border-color: rgba(255, 149, 0, 0.35);
 }
 
-/* Directions List */
+/* =========================================================================
+   DIRECTIONS LIST (APPLE TURN-BY-TURN CARD)
+   ========================================================================= */
+
 .directions-card {
   background-color: var(--bg-surface);
   border: 1px solid var(--border-light);
-  border-radius: 8px;
+  border-radius: 14px;
   display: flex;
   flex-direction: column;
   overflow: hidden;
+  box-shadow: var(--shadow-sm);
 }
 
 .directions-header {
-  padding: 10px 14px;
+  padding: 11px 14px;
   background-color: var(--bg-subtle);
   border-bottom: 1px solid var(--border-light);
   font-size: 12px;
-  font-weight: 700;
+  font-weight: 600;
   color: var(--text-primary);
   display: flex;
   align-items: center;
@@ -640,12 +900,13 @@ html, body, #root {
 }
 
 .direction-step-row {
-  padding: 10px 14px;
+  padding: 11px 14px;
   display: flex;
   gap: 12px;
   border-bottom: 1px solid var(--border-light);
   cursor: pointer;
   transition: background-color 0.15s ease;
+  position: relative;
 }
 
 .direction-step-row:last-child {
@@ -657,8 +918,18 @@ html, body, #root {
 }
 
 .direction-step-row.active {
-  background-color: var(--forest-50);
-  border-left: 3px solid var(--forest-800);
+  background-color: var(--apple-blue-subtle);
+}
+
+.direction-step-row.active::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  width: 3.5px;
+  background-color: var(--apple-blue);
+  border-radius: 0 2px 2px 0;
 }
 
 .step-seq-number {
@@ -667,9 +938,9 @@ html, body, #root {
   border-radius: 50%;
   background-color: var(--bg-subtle);
   border: 1px solid var(--border-medium);
-  font-size: 10px;
-  font-weight: 800;
-  font-family: var(--font-mono);
+  font-size: 11px;
+  font-weight: 700;
+  font-family: var(--font-sans);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -678,9 +949,9 @@ html, body, #root {
 }
 
 .direction-step-row.active .step-seq-number {
-  background-color: var(--forest-800);
+  background-color: var(--apple-blue);
   color: #FFFFFF;
-  border-color: var(--forest-800);
+  border-color: var(--apple-blue);
 }
 
 .step-content {
@@ -690,7 +961,7 @@ html, body, #root {
 }
 
 .step-instruction {
-  font-size: 12px;
+  font-size: 12.5px;
   font-weight: 600;
   color: var(--text-primary);
   line-height: 1.35;
@@ -701,74 +972,10 @@ html, body, #root {
   color: var(--text-muted);
 }
 
-/* Roadblock Section */
-.roadblock-section {
-  background-color: #FFFDF9;
-  border: 1px solid #EADBCC;
-  border-radius: 8px;
-  padding: 12px;
-  display: flex;
-  flex-direction: column;
-  gap: 8px;
-}
+/* =========================================================================
+   CAMPUS MAP CANVAS & FLOATING APPLE MAPS CONTROLS
+   ========================================================================= */
 
-.roadblock-header {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-}
-
-.roadblock-title {
-  font-size: 12px;
-  font-weight: 700;
-  color: #8C4015;
-  display: flex;
-  align-items: center;
-  gap: 6px;
-}
-
-.toggle-block-mode-btn {
-  padding: 4px 8px;
-  font-size: 11px;
-  font-weight: 700;
-  border-radius: 4px;
-  border: 1px solid var(--orange-600);
-  background-color: var(--orange-100);
-  color: var(--orange-800);
-  cursor: pointer;
-  transition: all 0.15s ease;
-}
-
-.toggle-block-mode-btn.active {
-  background-color: var(--orange-600);
-  color: #FFFFFF;
-}
-
-.blocked-paths-chips {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 6px;
-}
-
-.blocked-path-badge {
-  display: inline-flex;
-  align-items: center;
-  gap: 4px;
-  padding: 3px 6px;
-  font-size: 10px;
-  font-weight: 600;
-  background-color: #FDEDED;
-  color: #C5221F;
-  border: 1px solid #F5C6C6;
-  border-radius: 4px;
-}
-
-.remove-block-x {
-  cursor: pointer;
-  font-weight: 800;
-}
-
-/* Center Map Canvas Area */
 .map-canvas-container {
   flex: 1;
   height: 100%;
@@ -789,22 +996,24 @@ html, body, #root {
   cursor: grabbing;
 }
 
-/* Floating Map Controls */
+/* Floating Zoom & Tool Stack (macOS / iPadOS Maps Style) */
 .map-floating-controls {
   position: absolute;
   bottom: 24px;
   right: 24px;
   display: flex;
   flex-direction: column;
-  gap: 8px;
+  gap: 6px;
   z-index: 20;
 }
 
 .map-control-btn {
-  width: 36px;
-  height: 36px;
-  border-radius: 6px;
-  background-color: var(--bg-surface);
+  width: 38px;
+  height: 38px;
+  border-radius: 10px; /* Apple rounded tool button */
+  background-color: var(--bg-translucent);
+  backdrop-filter: blur(20px) saturate(180%);
+  -webkit-backdrop-filter: blur(20px) saturate(180%);
   border: 1px solid var(--border-medium);
   box-shadow: var(--shadow-md);
   color: var(--text-primary);
@@ -812,48 +1021,57 @@ html, body, #root {
   align-items: center;
   justify-content: center;
   cursor: pointer;
-  transition: all 0.15s ease;
+  transition: all 0.18s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 .map-control-btn:hover {
-  background-color: var(--bg-subtle);
+  background-color: var(--bg-surface);
   border-color: var(--border-dark);
+  transform: scale(1.05);
 }
 
+.map-control-btn:active {
+  transform: scale(0.95);
+}
+
+/* Top Compass Badge */
 .map-compass-badge {
   position: absolute;
-  top: 20px;
-  right: 20px;
-  background-color: rgba(255, 255, 255, 0.9);
-  backdrop-filter: blur(4px);
+  top: 18px;
+  right: 18px;
+  background-color: var(--bg-translucent);
+  backdrop-filter: blur(20px) saturate(180%);
+  -webkit-backdrop-filter: blur(20px) saturate(180%);
   border: 1px solid var(--border-medium);
-  border-radius: 6px;
-  padding: 6px 10px;
+  border-radius: 980px;
+  padding: 6px 12px;
   display: flex;
   align-items: center;
   gap: 6px;
   font-size: 11px;
-  font-weight: 700;
-  color: var(--forest-800);
+  font-weight: 600;
+  color: var(--text-secondary);
   box-shadow: var(--shadow-sm);
   z-index: 20;
 }
 
+/* Bottom Legend Banner */
 .map-legend-banner {
   position: absolute;
   bottom: 24px;
   left: 24px;
-  background-color: rgba(255, 255, 255, 0.95);
-  backdrop-filter: blur(4px);
+  background-color: var(--bg-translucent);
+  backdrop-filter: blur(20px) saturate(180%);
+  -webkit-backdrop-filter: blur(20px) saturate(180%);
   border: 1px solid var(--border-medium);
-  border-radius: 6px;
-  padding: 8px 12px;
+  border-radius: 980px;
+  padding: 7px 14px;
   display: flex;
   align-items: center;
   gap: 14px;
-  font-size: 11px;
+  font-size: 11.5px;
   color: var(--text-secondary);
-  box-shadow: var(--shadow-sm);
+  box-shadow: var(--shadow-md);
   z-index: 20;
 }
 
@@ -870,14 +1088,14 @@ html, body, #root {
 }
 
 .legend-swatch.primary-route {
-  background-color: var(--forest-800);
+  background-color: var(--apple-blue);
   height: 4px;
 }
 
 .legend-swatch.alt-route {
-  background-color: var(--orange-600);
+  background-color: var(--apple-teal);
   height: 3px;
-  border-top: 1px dashed var(--orange-600);
+  border-top: 1px dashed var(--apple-teal);
 }
 
 .legend-swatch.blocked-route {
@@ -885,41 +1103,45 @@ html, body, #root {
   height: 4px;
 }
 
-/* Modals & Slide-overs */
+/* =========================================================================
+   APPLE-STYLE MODALS & SHEETS
+   ========================================================================= */
+
 .modal-overlay {
   position: fixed;
   inset: 0;
-  background-color: rgba(18, 25, 21, 0.45);
-  backdrop-filter: blur(2px);
+  background-color: rgba(0, 0, 0, 0.38);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
   display: flex;
   align-items: center;
   justify-content: center;
   z-index: 1000;
   padding: 20px;
-  animation: fadeIn 0.15s ease-out;
+  animation: appleFadeIn 0.2s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 .modal-dialog {
   background-color: var(--bg-surface);
-  border: 1px solid var(--border-medium);
-  border-radius: 12px;
+  border: 1px solid var(--border-light);
+  border-radius: 18px; /* Apple iOS modal radius */
   box-shadow: var(--shadow-float);
   width: 100%;
-  max-width: 780px;
+  max-width: 760px;
   max-height: 85vh;
   display: flex;
   flex-direction: column;
   overflow: hidden;
-  animation: scaleUp 0.15s ease-out;
+  animation: appleScaleUp 0.22s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 .modal-dialog.large {
-  max-width: 960px;
+  max-width: 940px;
 }
 
 .modal-header {
   padding: 16px 20px;
-  background-color: var(--bg-subtle);
+  background-color: var(--bg-surface);
   border-bottom: 1px solid var(--border-light);
   display: flex;
   align-items: center;
@@ -927,8 +1149,9 @@ html, body, #root {
 }
 
 .modal-title {
-  font-size: 16px;
+  font-size: 15.5px;
   font-weight: 700;
+  letter-spacing: -0.015em;
   color: var(--text-primary);
   display: flex;
   align-items: center;
@@ -936,17 +1159,22 @@ html, body, #root {
 }
 
 .modal-close-btn {
-  background: none;
+  background: var(--bg-subtle);
   border: none;
-  font-size: 18px;
+  font-size: 16px;
   cursor: pointer;
-  color: var(--text-muted);
-  padding: 4px;
-  border-radius: 4px;
+  color: var(--text-secondary);
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.16s ease;
 }
 
 .modal-close-btn:hover {
-  background-color: var(--border-light);
+  background-color: var(--bg-hover);
   color: var(--text-primary);
 }
 
@@ -958,22 +1186,25 @@ html, body, #root {
   gap: 16px;
 }
 
+/* Modal Capsule Tabs */
 .modal-tabs-bar {
   display: flex;
-  gap: 8px;
+  gap: 4px;
+  padding: 8px 18px;
+  background-color: var(--bg-subtle);
   border-bottom: 1px solid var(--border-light);
-  padding: 0 20px;
-  background-color: var(--bg-surface);
 }
 
 .modal-tab {
-  padding: 10px 14px;
+  padding: 7px 14px;
   font-size: 12px;
-  font-weight: 700;
-  border-bottom: 2px solid transparent;
-  color: var(--text-muted);
+  font-weight: 600;
+  border-radius: 8px;
+  color: var(--text-secondary);
   cursor: pointer;
-  transition: all 0.15s ease;
+  transition: all 0.16s cubic-bezier(0.16, 1, 0.3, 1);
+  display: flex;
+  align-items: center;
 }
 
 .modal-tab:hover {
@@ -981,71 +1212,76 @@ html, body, #root {
 }
 
 .modal-tab.active {
-  color: var(--forest-800);
-  border-bottom-color: var(--forest-800);
+  background-color: var(--bg-surface);
+  color: var(--apple-blue);
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08);
 }
 
-/* Animations */
-@keyframes fadeIn {
+/* macOS Terminal Box for Code & Architecture */
+.macos-terminal-card {
+  background-color: #1A1A1C;
+  color: #E5E5EA;
+  border-radius: 12px;
+  overflow: hidden;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  box-shadow: var(--shadow-md);
+  font-family: var(--font-mono);
+  font-size: 11.5px;
+}
+
+.macos-terminal-header {
+  padding: 8px 12px;
+  background-color: #242426;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.macos-traffic-lights {
+  display: flex;
+  gap: 6px;
+}
+
+.traffic-light {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+}
+
+.traffic-light.close { background-color: #FF5F56; }
+.traffic-light.minimize { background-color: #FFBD2E; }
+.traffic-light.zoom { background-color: #27C93F; }
+
+.macos-terminal-title {
+  color: #8E8E93;
+  font-size: 11px;
+  font-weight: 600;
+  margin-left: 4px;
+}
+
+.macos-terminal-content {
+  padding: 12px 14px;
+  max-height: 240px;
+  overflow-y: auto;
+  line-height: 1.45;
+}
+
+/* =========================================================================
+   ANIMATIONS & TRANSITIONS
+   ========================================================================= */
+
+@keyframes appleFadeIn {
   from { opacity: 0; }
   to { opacity: 1; }
 }
 
-@keyframes scaleUp {
-  from { opacity: 0; transform: scale(0.98); }
+@keyframes appleScaleUp {
+  from { opacity: 0; transform: scale(0.97); }
   to { opacity: 1; transform: scale(1); }
 }
 
-/* Responsive Breakpoints */
-@media (max-width: 900px) {
-  .app-workspace {
-    flex-direction: column-reverse;
-  }
-  .app-sidebar {
-    width: 100%;
-    height: 380px;
-    border-right: none;
-    border-top: 1px solid var(--border-light);
-  }
-}
-
-/* =========================================================================
-   THEME TOGGLE BUTTON & DYNAMIC THEME ENHANCEMENTS
-   ========================================================================= */
-
-.theme-toggle-btn {
-  border-color: var(--border-medium);
-  background-color: var(--bg-surface);
-  color: var(--text-primary);
-  display: inline-flex;
-  align-items: center;
-  gap: 7px;
-  font-weight: 700;
-  border-radius: 20px;
-  padding: 6px 14px;
-  box-shadow: var(--shadow-sm);
-  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
-}
-
-.theme-toggle-btn:hover {
-  transform: translateY(-1px);
-  box-shadow: var(--shadow-md);
-  border-color: var(--forest-800);
-}
-
-[data-theme="dark"] .theme-toggle-btn {
-  background-color: #1A241D;
-  border-color: #2F4535;
-  color: #EDF5F0;
-  box-shadow: 0 0 12px rgba(56, 224, 133, 0.15);
-}
-
-[data-theme="dark"] .theme-toggle-btn:hover {
-  border-color: #38E085;
-  box-shadow: 0 0 16px rgba(56, 224, 133, 0.28);
-}
-
-/* Smooth theme transitions across surfaces */
+/* Surface Transition */
 body, 
 .app-header, 
 .app-sidebar, 
@@ -1055,89 +1291,202 @@ body,
 .route-summary-card, 
 .directions-card,
 .location-input-field,
-.backend-indicator {
-  transition: background-color 0.25s ease, border-color 0.25s ease, color 0.2s ease, box-shadow 0.25s ease;
+.backend-indicator,
+.map-control-btn,
+.map-compass-badge,
+.map-legend-banner {
+  transition: background-color 0.22s cubic-bezier(0.16, 1, 0.3, 1),
+              border-color 0.22s ease,
+              color 0.18s ease,
+              box-shadow 0.22s ease;
 }
 
-/* Dark Mode Overrides for Specific Components */
-[data-theme="dark"] .roadblock-section {
-  background-color: #171510;
-  border-color: #382717;
-}
-
-[data-theme="dark"] .roadblock-title {
-  color: #F6AD55;
-}
-
-[data-theme="dark"] .blocked-path-badge {
-  background-color: #2D1414;
-  color: #FC8181;
-  border-color: #4D2020;
-}
-
-[data-theme="dark"] .map-compass-badge,
-[data-theme="dark"] .map-legend-banner {
-  background-color: rgba(20, 28, 22, 0.94);
-  backdrop-filter: blur(8px);
-  border-color: var(--border-medium);
-  color: var(--text-secondary);
-  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.6);
-}
-
-[data-theme="dark"] .map-compass-badge {
-  color: #68D391;
-}
-
-[data-theme="dark"] .map-control-btn {
-  background-color: var(--bg-surface);
-  border-color: var(--border-medium);
-  color: var(--text-primary);
-}
-
-[data-theme="dark"] .map-control-btn:hover {
-  background-color: var(--bg-subtle);
-  border-color: var(--forest-800);
-}
-
-[data-theme="dark"] .autocomplete-dropdown {
-  background-color: var(--bg-surface);
-  border-color: var(--border-medium);
-}
-
-[data-theme="dark"] .autocomplete-item:hover,
-[data-theme="dark"] .autocomplete-item.active {
-  background-color: var(--forest-100);
-}
-
-[data-theme="dark"] .sim-btn:hover {
-  background-color: #223227;
-}
-
-[data-theme="dark"] .direction-step-row:hover {
-  background-color: var(--bg-subtle);
-}
-
-[data-theme="dark"] .direction-step-row.active {
-  background-color: rgba(56, 224, 133, 0.08);
-  border-left-color: #38E085;
-}
-
-/* Custom Scrollbars */
+/* Custom Sleek Scrollbars */
 ::-webkit-scrollbar {
-  width: 6px;
-  height: 6px;
+  width: 5px;
+  height: 5px;
 }
 
 ::-webkit-scrollbar-track {
-  background: var(--bg-canvas);
+  background: transparent;
 }
 
 ::-webkit-scrollbar-thumb {
   background: var(--border-medium);
-  border-radius: 4px;
+  border-radius: 980px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
   background: var(--border-dark);
 }
 
+/* =========================================================================
+   RESPONSIVE DESIGN SYSTEM (MOBILE, TABLET, LAPTOP)
+   ========================================================================= */
+
+/* Tablets & Small Laptops (max-width: 1024px) */
+@media (max-width: 1024px) {
+  :root {
+    --sidebar-width: 340px;
+  }
+  .brand-subtext {
+    max-width: 260px;
+  }
+}
+
+/* Mobile & Small Tablets (max-width: 860px) */
+@media (max-width: 860px) {
+  .app-header {
+    padding: 0 12px;
+  }
+
+  .brand-subtext {
+    display: none;
+  }
+
+  /* Make header actions compact */
+  .backend-indicator span:last-child {
+    display: none;
+  }
+
+  /* Enable mobile drawer toggle button in header */
+  .mobile-drawer-toggle-btn {
+    display: inline-flex;
+    padding: 6px 12px;
+    font-size: 12px;
+    font-weight: 600;
+    border-radius: 980px;
+    background-color: var(--apple-blue);
+    color: #FFFFFF;
+    border: none;
+    cursor: pointer;
+    box-shadow: 0 2px 6px rgba(0, 122, 255, 0.3);
+  }
+
+  /* Workspace Layout on Mobile */
+  .app-workspace {
+    flex-direction: column-reverse;
+    position: relative;
+  }
+
+  /* iOS Style Mobile Bottom Sheet Drawer */
+  .app-sidebar {
+    width: 100%;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 58vh;
+    max-height: 80vh;
+    border-right: none;
+    border-top: 1px solid var(--border-medium);
+    border-radius: 20px 20px 0 0; /* iOS Bottom Sheet top rounded corners */
+    box-shadow: 0 -8px 30px rgba(0, 0, 0, 0.12);
+    z-index: 40;
+    background-color: var(--bg-surface);
+    transition: transform 0.32s cubic-bezier(0.16, 1, 0.3, 1), height 0.32s ease;
+  }
+
+  /* When drawer is minimized on mobile */
+  .app-sidebar.mobile-collapsed {
+    transform: translateY(calc(100% - 68px));
+  }
+
+  /* Show mobile sheet grab notch */
+  .mobile-sheet-handle {
+    display: flex;
+  }
+
+  /* Map Canvas fills entire workspace */
+  .map-canvas-container {
+    width: 100%;
+    height: 100%;
+  }
+
+  /* Reposition Floating Map Controls for Mobile */
+  .map-floating-controls {
+    bottom: 84px;
+    right: 14px;
+  }
+
+  .map-compass-badge {
+    top: 12px;
+    right: 12px;
+    font-size: 10px;
+    padding: 4px 8px;
+  }
+
+  .map-legend-banner {
+    bottom: 84px;
+    left: 14px;
+    font-size: 10.5px;
+    padding: 5px 10px;
+    gap: 8px;
+    max-width: calc(100vw - 80px);
+    overflow-x: auto;
+  }
+
+  /* Modals on mobile */
+  .modal-overlay {
+    padding: 10px;
+    align-items: flex-end; /* Bottom sheet modal feel */
+  }
+
+  .modal-dialog {
+    max-height: 90vh;
+    border-radius: 18px 18px 0 0;
+  }
+
+  .modal-tabs-bar {
+    overflow-x: auto;
+    padding: 6px 12px;
+  }
+
+  .modal-tab {
+    white-space: nowrap;
+    padding: 6px 10px;
+    font-size: 11px;
+  }
+}
+
+/* Small Smartphone Screens (max-width: 480px) */
+@media (max-width: 480px) {
+  .brand-badge {
+    display: none;
+  }
+
+  .brand-title {
+    font-size: 13.5px;
+  }
+
+  .header-actions {
+    gap: 5px;
+  }
+
+  .header-btn span {
+    display: none; /* Icon-only on very narrow mobile screens */
+  }
+
+  .header-btn {
+    padding: 6px 9px;
+    min-height: 32px;
+    min-width: 32px;
+  }
+
+  .mobile-drawer-toggle-btn span {
+    display: inline !important;
+  }
+
+  .route-metrics-grid {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 4px;
+  }
+
+  .metric-value {
+    font-size: 14px;
+  }
+
+  .metric-label {
+    font-size: 8.5px;
+  }
+}

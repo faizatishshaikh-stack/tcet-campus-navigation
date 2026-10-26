@@ -1,5 +1,5 @@
 import React from 'react';
-import { Compass, Cpu, Navigation, Sparkles, MapPin, Server, Activity, Sun, Moon } from 'lucide-react';
+import { Compass, Cpu, Navigation, Sparkles, MapPin, Server, Activity, Sun, Moon, Layers } from 'lucide-react';
 
 export function Header({
   onOpenDsaInspector,
@@ -10,18 +10,20 @@ export function Header({
   onCheckCBackend,
   blockedCount,
   theme,
-  onToggleTheme
+  onToggleTheme,
+  isMobileDrawerCollapsed,
+  onToggleMobileDrawer
 }) {
   return (
     <header className="app-header">
-      {/* Brand & Crest */}
+      {/* Brand & Crest - Apple Squircle Icon */}
       <div className="brand-section">
         <div className="brand-logo-mark">
-          <Compass size={22} strokeWidth={2.2} />
+          <Compass size={20} strokeWidth={2.2} />
         </div>
         <div className="brand-text-block">
           <div className="brand-title">
-            TCET Smart Campus Navigation
+            TCET Campus
             <span className="brand-badge">KANDIVALI EAST</span>
           </div>
           <div className="brand-subtext">
@@ -32,33 +34,47 @@ export function Header({
 
       {/* Action Controls */}
       <div className="header-actions">
+        {/* Mobile Drawer Trigger (Routes / Plan) */}
+        {onToggleMobileDrawer && (
+          <button 
+            type="button"
+            className="mobile-drawer-toggle-btn"
+            onClick={onToggleMobileDrawer}
+            title={isMobileDrawerCollapsed ? 'Open Route Planner Drawer' : 'Hide Drawer'}
+          >
+            <Navigation size={13} style={{ transform: 'rotate(45deg)' }} />
+            <span>{isMobileDrawerCollapsed ? 'Plan Route' : 'Map View'}</span>
+          </button>
+        )}
+
+        {/* Roadblock active indicator */}
+        {blockedCount > 0 && (
+          <div className="header-warning-pill" title={`${blockedCount} active road obstruction(s)`}>
+            <span>⚠️</span>
+            <span>{blockedCount} {blockedCount === 1 ? 'roadblock' : 'roadblocks'}</span>
+          </div>
+        )}
+
+        {/* Nearby explorer */}
+        <button className="header-btn" onClick={onOpenNearbyModal} title="Explore nearby facilities via Breadth-First Search">
+          <MapPin size={13} />
+          <span>Nearby (BFS)</span>
+        </button>
+
+        {/* DSA Inspector / Lab */}
+        <button className="header-btn primary" onClick={onOpenDsaInspector} title="Open DSA Laboratory, Graph & Hash Table Inspector">
+          <Cpu size={13} />
+          <span>DSA Inspector</span>
+        </button>
+
         {/* Theme Toggle Button */}
         <button 
           className="header-btn theme-toggle-btn"
           onClick={onToggleTheme}
           title={theme === 'dark' ? 'Switch to Light Theme' : 'Switch to Dark Theme'}
         >
-          {theme === 'dark' ? <Sun size={14} color="#F6AD55" /> : <Moon size={14} />}
-          <span>{theme === 'dark' ? 'Light Mode' : 'Dark Mode'}</span>
-        </button>
-
-        {/* Roadblock active indicator */}
-        {blockedCount > 0 && (
-          <div className="backend-indicator" style={{ backgroundColor: 'rgba(217, 56, 41, 0.12)', borderColor: 'var(--route-blocked)', color: 'var(--route-blocked)' }}>
-            <span>⚠️ {blockedCount} {blockedCount === 1 ? 'roadblock' : 'roadblocks'} active</span>
-          </div>
-        )}
-
-        {/* Nearby explorer */}
-        <button className="header-btn" onClick={onOpenNearbyModal}>
-          <MapPin size={14} />
-          <span>Explore Nearby (BFS)</span>
-        </button>
-
-        {/* DSA Inspector / Lab */}
-        <button className="header-btn primary" onClick={onOpenDsaInspector}>
-          <Cpu size={14} />
-          <span>DSA Lab & Inspector</span>
+          {theme === 'dark' ? <Sun size={13} color="#FF9F0A" /> : <Moon size={13} />}
+          <span>{theme === 'dark' ? 'Light' : 'Dark'}</span>
         </button>
 
         {/* C Backend Connectivity Status */}

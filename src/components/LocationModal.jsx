@@ -36,8 +36,8 @@ export function LocationModal({
               style={{
                 fontFamily: 'var(--font-mono)',
                 fontSize: '11px',
-                padding: '2px 6px',
-                borderRadius: '4px',
+                padding: '2px 8px',
+                borderRadius: '980px',
                 backgroundColor: categoryMeta.badgeBg,
                 color: categoryMeta.badgeText,
                 fontWeight: 700
@@ -46,35 +46,35 @@ export function LocationModal({
               {building.code}
             </span>
           </div>
-          <button className="modal-close-btn" onClick={onClose}>
-            <X size={18} />
+          <button type="button" className="modal-close-btn" onClick={onClose} title="Close window">
+            <X size={16} />
           </button>
         </div>
 
         {/* Content Body */}
         <div className="modal-body">
-          <p style={{ fontSize: '13px', lineHeight: '1.5', color: 'var(--text-secondary)' }}>
+          <p style={{ fontSize: '13px', lineHeight: '1.55', color: 'var(--text-secondary)' }}>
             {building.description}
           </p>
 
           {/* Quick Info Grid */}
           <div style={{ display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: '10px' }}>
-            <div style={{ background: 'var(--bg-canvas)', padding: '10px', borderRadius: '6px', border: '1px solid var(--border-light)' }}>
+            <div style={{ background: 'var(--bg-canvas)', padding: '12px', borderRadius: '12px', border: '1px solid var(--border-light)' }}>
               <div style={{ display: 'flex', alignItems: 'center', gap: '6px', color: 'var(--text-muted)', fontSize: '11px', marginBottom: '4px' }}>
                 <Clock size={13} />
                 <span>Operating Hours</span>
               </div>
-              <strong style={{ fontSize: '12px', color: 'var(--text-primary)' }}>
+              <strong style={{ fontSize: '12.5px', color: 'var(--text-primary)' }}>
                 {building.hours}
               </strong>
             </div>
 
-            <div style={{ background: 'var(--bg-canvas)', padding: '10px', borderRadius: '6px', border: '1px solid var(--border-light)' }}>
+            <div style={{ background: 'var(--bg-canvas)', padding: '12px', borderRadius: '12px', border: '1px solid var(--border-light)' }}>
               <div style={{ display: 'flex', alignItems: 'center', gap: '6px', color: 'var(--text-muted)', fontSize: '11px', marginBottom: '4px' }}>
                 <Layers size={13} />
                 <span>Architecture</span>
               </div>
-              <strong style={{ fontSize: '12px', color: 'var(--text-primary)' }}>
+              <strong style={{ fontSize: '12.5px', color: 'var(--text-primary)' }}>
                 {building.floors} • {building.categoryLabel}
               </strong>
             </div>
@@ -94,16 +94,16 @@ export function LocationModal({
                       display: 'inline-flex',
                       alignItems: 'center',
                       gap: '5px',
-                      padding: '4px 8px',
+                      padding: '5px 10px',
                       background: 'var(--bg-subtle)',
-                      borderRadius: '4px',
-                      fontSize: '11px',
-                      fontWeight: 600,
+                      borderRadius: '980px',
+                      fontSize: '11.5px',
+                      fontWeight: 500,
                       color: 'var(--text-secondary)',
                       border: '1px solid var(--border-light)'
                     }}
                   >
-                    <CheckCircle2 size={12} color="#2E8B57" />
+                    <CheckCircle2 size={12} color="var(--apple-green)" />
                     <span>{fac}</span>
                   </span>
                 ))}
@@ -122,13 +122,13 @@ export function LocationModal({
                   <span
                     key={idx}
                     style={{
-                      padding: '3px 7px',
-                      background: 'var(--forest-50)',
-                      borderRadius: '4px',
+                      padding: '4px 9px',
+                      background: 'var(--apple-blue-subtle)',
+                      borderRadius: '980px',
                       fontSize: '11px',
-                      fontWeight: 600,
-                      color: 'var(--forest-800)',
-                      border: '1px solid var(--forest-100)'
+                      fontWeight: 500,
+                      color: 'var(--apple-blue)',
+                      border: '1px solid var(--apple-blue-border)'
                     }}
                   >
                     {dept}
@@ -139,30 +139,33 @@ export function LocationModal({
           )}
 
           {/* Action Navigation Buttons */}
-          <div style={{ display: 'flex', gap: '8px', marginTop: '8px', paddingTop: '12px', borderTop: '1px solid var(--border-light)' }}>
+          <div style={{ display: 'flex', gap: '8px', marginTop: '4px', paddingTop: '14px', borderTop: '1px solid var(--border-light)', flexWrap: 'wrap' }}>
             <button
+              type="button"
               className="header-btn primary"
-              style={{ flex: 1, justifyContent: 'center' }}
+              style={{ flex: 1, minWidth: '160px', justifyContent: 'center' }}
               onClick={() => {
                 onSetStart(building.id);
                 onClose();
               }}
             >
               <MapPin size={13} />
-              <span>Navigate From Here (A)</span>
+              <span>Navigate From (A)</span>
             </button>
             <button
+              type="button"
               className="header-btn"
-              style={{ flex: 1, justifyContent: 'center', borderColor: 'var(--orange-600)', color: 'var(--orange-800)', backgroundColor: 'var(--orange-50)' }}
+              style={{ flex: 1, minWidth: '160px', justifyContent: 'center', borderColor: 'rgba(255, 149, 0, 0.35)', color: 'var(--apple-orange)', backgroundColor: 'var(--apple-orange-subtle)' }}
               onClick={() => {
                 onSetDest(building.id);
                 onClose();
               }}
             >
               <Navigation size={13} />
-              <span>Navigate To Here (B)</span>
+              <span>Navigate To (B)</span>
             </button>
             <button
+              type="button"
               className="header-btn"
               style={{ justifyContent: 'center' }}
               onClick={() => {
@@ -172,7 +175,7 @@ export function LocationModal({
               title="Find nearby facilities using Breadth-First Search"
             >
               <Compass size={13} />
-              <span>Explore Nearby (BFS)</span>
+              <span>Nearby (BFS)</span>
             </button>
           </div>
         </div>

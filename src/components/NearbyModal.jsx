@@ -33,28 +33,31 @@ export function NearbyModal({
         {/* Header */}
         <div className="modal-header">
           <div className="modal-title">
-            <Compass size={18} color="var(--forest-800)" />
+            <Compass size={18} color="var(--apple-blue)" />
             <span>Nearby Campus Locations (BFS Queue Traversal)</span>
           </div>
-          <button className="modal-close-btn" onClick={onClose}>
-            <X size={18} />
+          <button type="button" className="modal-close-btn" onClick={onClose} title="Close window">
+            <X size={16} />
           </button>
         </div>
 
-        {/* Controls */}
-        <div style={{ padding: '14px 20px', background: 'var(--bg-subtle)', borderBottom: '1px solid var(--border-light)', display: 'flex', flexWrap: 'wrap', gap: '14px', alignItems: 'center' }}>
+        {/* Controls Toolbar */}
+        <div style={{ padding: '12px 20px', background: 'var(--bg-subtle)', borderBottom: '1px solid var(--border-light)', display: 'flex', flexWrap: 'wrap', gap: '12px', alignItems: 'center' }}>
           {/* Origin Picker */}
           <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
-            <span style={{ fontSize: '11px', fontWeight: 700, color: 'var(--text-muted)' }}>FROM ORIGIN:</span>
+            <span style={{ fontSize: '11px', fontWeight: 600, color: 'var(--text-muted)' }}>FROM ORIGIN:</span>
             <select
               style={{
-                padding: '6px 10px',
-                borderRadius: '6px',
+                padding: '6px 12px',
+                borderRadius: '980px',
                 border: '1px solid var(--border-medium)',
                 background: 'var(--bg-surface)',
                 fontSize: '12px',
                 fontWeight: 600,
-                color: 'var(--text-primary)'
+                color: 'var(--text-primary)',
+                fontFamily: 'var(--font-sans)',
+                outline: 'none',
+                cursor: 'pointer'
               }}
               value={originId}
               onChange={(e) => setOriginId(e.target.value)}
@@ -76,8 +79,9 @@ export function NearbyModal({
                 type="button"
                 className={`quick-pill ${categoryFilter === cat.id ? 'active' : ''}`}
                 style={{
-                  backgroundColor: categoryFilter === cat.id ? 'var(--forest-800)' : 'var(--bg-surface)',
-                  color: categoryFilter === cat.id ? '#FFFFFF' : 'var(--text-secondary)'
+                  backgroundColor: categoryFilter === cat.id ? 'var(--apple-blue)' : 'var(--bg-surface)',
+                  color: categoryFilter === cat.id ? '#FFFFFF' : 'var(--text-secondary)',
+                  borderColor: categoryFilter === cat.id ? 'transparent' : 'var(--border-light)'
                 }}
                 onClick={() => setCategoryFilter(cat.id)}
               >
@@ -94,33 +98,40 @@ export function NearbyModal({
             onClick={() => setShowTrace(!showTrace)}
           >
             <ListOrdered size={12} />
-            <span>{showTrace ? 'Hide BFS Queue Trace' : 'Show BFS Queue Trace'}</span>
+            <span>{showTrace ? 'Hide Queue Trace' : 'Show BFS Queue Trace'}</span>
           </button>
         </div>
 
         {/* Content Body */}
         <div className="modal-body">
-          {/* BFS Exploration Trace Drawer */}
+          {/* BFS Exploration Trace macOS Terminal */}
           {showTrace && (
-            <div style={{ background: '#1B241E', color: '#DEE8E2', padding: '12px', borderRadius: '8px', fontFamily: 'var(--font-mono)', fontSize: '11px', maxHeight: '180px', overflowY: 'auto' }}>
-              <div style={{ fontWeight: 700, color: '#68D391', marginBottom: '6px' }}>
-                &gt; BFS Queue Execution Trace (Root: {originId})
-              </div>
-              {nearbyData.trace.map((t, idx) => (
-                <div key={idx} style={{ padding: '2px 0', borderBottom: '1px solid #2B3830' }}>
-                  <span style={{ color: '#F6AD55' }}>[Step {t.step}]</span> {t.description}
-                  {t.queueState && (
-                    <span style={{ color: '#90CDF4', marginLeft: '8px' }}>
-                      Queue: [{t.queueState.join(', ')}]
-                    </span>
-                  )}
+            <div className="macos-terminal-card">
+              <div className="macos-terminal-header">
+                <div className="macos-traffic-lights">
+                  <div className="traffic-light close" />
+                  <div className="traffic-light minimize" />
+                  <div className="traffic-light zoom" />
                 </div>
-              ))}
+                <span className="macos-terminal-title">BFS Queue Execution Log (Root: {originId})</span>
+              </div>
+              <div className="macos-terminal-content">
+                {nearbyData.trace.map((t, idx) => (
+                  <div key={idx} style={{ padding: '3px 0', borderBottom: '1px solid rgba(255,255,255,0.06)' }}>
+                    <span style={{ color: '#FF9F0A' }}>[Step {t.step}]</span> {t.description}
+                    {t.queueState && (
+                      <span style={{ color: '#64D2FF', marginLeft: '8px' }}>
+                        Queue: [{t.queueState.join(', ')}]
+                      </span>
+                    )}
+                  </div>
+                ))}
+              </div>
             </div>
           )}
 
           {/* Discovered Buildings Grid */}
-          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(280px, 1fr))', gap: '10px' }}>
+          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(280px, 1fr))', gap: '12px' }}>
             {nearbyData.nearby.length > 0 ? (
               nearbyData.nearby.map((item) => {
                 const b = item.data;
@@ -131,8 +142,8 @@ export function NearbyModal({
                     style={{
                       background: 'var(--bg-surface)',
                       border: '1px solid var(--border-light)',
-                      borderRadius: '8px',
-                      padding: '12px',
+                      borderRadius: '14px',
+                      padding: '14px',
                       display: 'flex',
                       flexDirection: 'column',
                       gap: '8px',
@@ -145,8 +156,8 @@ export function NearbyModal({
                           fontFamily: 'var(--font-mono)',
                           fontSize: '10px',
                           fontWeight: 700,
-                          padding: '2px 6px',
-                          borderRadius: '4px',
+                          padding: '2px 8px',
+                          borderRadius: '980px',
                           background: catMeta.badgeBg,
                           color: catMeta.badgeText
                         }}
@@ -156,29 +167,30 @@ export function NearbyModal({
                       <span
                         style={{
                           fontSize: '10px',
-                          fontWeight: 700,
-                          padding: '2px 6px',
-                          borderRadius: '4px',
-                          background: 'var(--forest-100)',
-                          color: 'var(--forest-800)',
-                          fontFamily: 'var(--font-mono)'
+                          fontWeight: 600,
+                          padding: '2px 8px',
+                          borderRadius: '980px',
+                          background: 'var(--apple-blue-subtle)',
+                          color: 'var(--apple-blue)',
+                          fontFamily: 'var(--font-sans)'
                         }}
                       >
                         Hop Level {item.hop}
                       </span>
                     </div>
 
-                    <strong style={{ fontSize: '13px', color: 'var(--text-primary)' }}>
+                    <strong style={{ fontSize: '13px', color: 'var(--text-primary)', fontWeight: 600 }}>
                       {b?.name}
                     </strong>
 
-                    <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginTop: 'auto', paddingTop: '6px', borderTop: '1px solid var(--border-light)' }}>
-                      <span style={{ fontSize: '12px', fontFamily: 'var(--font-mono)', color: 'var(--text-muted)' }}>
+                    <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginTop: 'auto', paddingTop: '8px', borderTop: '1px solid var(--border-light)' }}>
+                      <span style={{ fontSize: '12px', fontFamily: 'var(--font-sans)', color: 'var(--text-muted)' }}>
                         🚶 ~{item.distance}m away
                       </span>
                       <button
+                        type="button"
                         className="header-btn"
-                        style={{ padding: '4px 8px', fontSize: '11px' }}
+                        style={{ padding: '4px 10px', fontSize: '11px', color: 'var(--apple-blue)' }}
                         onClick={() => {
                           onNavigateTo(item.id);
                           onClose();
@@ -192,7 +204,7 @@ export function NearbyModal({
                 );
               })
             ) : (
-              <div style={{ gridColumn: '1 / -1', padding: '30px', textAlign: 'center', color: 'var(--text-muted)' }}>
+              <div style={{ gridColumn: '1 / -1', padding: '32px', textAlign: 'center', color: 'var(--text-muted)', fontSize: '13px' }}>
                 No nearby locations matching the selected category.
               </div>
             )}

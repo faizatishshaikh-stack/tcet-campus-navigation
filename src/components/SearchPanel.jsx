@@ -28,6 +28,20 @@ export function SearchPanel({
     if (d) setDestQuery(d.name);
   }, [destId, buildings]);
 
+  // Click outside listener to dismiss autocomplete dropdowns
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+      if (
+        startRef.current && !startRef.current.contains(event.target) &&
+        destRef.current && !destRef.current.contains(event.target)
+      ) {
+        setActiveDropdown(null);
+      }
+    };
+    document.addEventListener('mousedown', handleClickOutside);
+    return () => document.removeEventListener('mousedown', handleClickOutside);
+  }, []);
+
   // Filter buildings for dropdown suggestions
   const filterBuildings = (query) => {
     const q = query.toLowerCase().trim();
@@ -58,12 +72,12 @@ export function SearchPanel({
   // Quick access icon resolver
   const getQuickIcon = (id) => {
     switch (id) {
-      case 'library_lrc': return <BookOpen size={12} />;
-      case 'canteen': return <Coffee size={12} />;
-      case 'cs_it_labs': return <Laptop size={12} />;
-      case 'admin_office': return <Building size={12} />;
-      case 'seminar_hall': return <Trophy size={12} />;
-      case 'sports_ground': return <Trophy size={12} />;
+      case 'library_lrc': return <BookOpen size={12} color="var(--apple-blue)" />;
+      case 'canteen': return <Coffee size={12} color="var(--apple-orange)" />;
+      case 'cs_it_labs': return <Laptop size={12} color="var(--apple-blue)" />;
+      case 'admin_office': return <Building size={12} color="var(--apple-purple)" />;
+      case 'seminar_hall': return <Trophy size={12} color="var(--apple-green)" />;
+      case 'sports_ground': return <Trophy size={12} color="var(--apple-green)" />;
       default: return <MapPin size={12} />;
     }
   };
@@ -85,7 +99,7 @@ export function SearchPanel({
 
       {/* Start Input */}
       <div className="input-endpoint-group" ref={startRef}>
-        <div className="endpoint-icon-pin start">A</div>
+        <div className="endpoint-icon-pin start" title="Starting Point (A)">A</div>
         <div className="input-container">
           <input
             type="text"
@@ -117,7 +131,7 @@ export function SearchPanel({
 
       {/* Destination Input */}
       <div className="input-endpoint-group" ref={destRef}>
-        <div className="endpoint-icon-pin dest">B</div>
+        <div className="endpoint-icon-pin dest" title="Destination (B)">B</div>
         <div className="input-container">
           <input
             type="text"

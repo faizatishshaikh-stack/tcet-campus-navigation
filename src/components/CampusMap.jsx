@@ -1,7 +1,7 @@
 import React, { useState, useRef, useMemo } from 'react';
 import { 
-  ZoomIn, ZoomOut, RotateCcw, AlertTriangle, 
-  MapPin, Compass, Navigation, Eye, EyeOff
+  ZoomIn, ZoomOut, RotateCcw, 
+  Compass, Eye, EyeOff
 } from 'lucide-react';
 import { CATEGORY_METADATA } from '../data/campusData';
 
@@ -207,43 +207,42 @@ export function CampusMap({
         onWheel={handleWheel}
       >
         <defs>
-          {/* Subtle Grid Pattern */}
+          {/* Subtle Apple Maps Grid */}
           <pattern id="campus-grid" width="40" height="40" patternUnits="userSpaceOnUse">
             <path 
               d="M 40 0 L 0 0 0 40" 
               fill="none" 
-              stroke={isDark ? '#1C2920' : '#E3DFC7'} 
+              stroke={isDark ? 'rgba(255, 255, 255, 0.04)' : 'rgba(0, 0, 0, 0.04)'} 
               strokeWidth="0.5" 
-              strokeOpacity={isDark ? 0.7 : 0.5} 
             />
           </pattern>
 
           {/* Construction Roadblock Hazard Pattern */}
           <pattern id="hazard-stripe" width="12" height="12" patternTransform="rotate(45 0 0)" patternUnits="userSpaceOnUse">
-            <line x1="0" y1="0" x2="0" y2="12" stroke="#E53E3E" strokeWidth="5" />
-            <line x1="6" y1="0" x2="6" y2="12" stroke={isDark ? '#1A202C' : '#FFFFFF'} strokeWidth="5" />
+            <line x1="0" y1="0" x2="0" y2="12" stroke="#FF3B30" strokeWidth="5" />
+            <line x1="6" y1="0" x2="6" y2="12" stroke={isDark ? '#1C1C1E' : '#FFFFFF'} strokeWidth="5" />
           </pattern>
 
-          {/* Drop Shadows */}
-          <filter id="building-shadow" x="-10%" y="-10%" width="125%" height="125%">
+          {/* Apple Diffused Card Shadows */}
+          <filter id="building-shadow" x="-15%" y="-15%" width="130%" height="130%">
             <feDropShadow 
-              dx="1" 
+              dx="0" 
               dy="3" 
-              stdDeviation="2.5" 
-              floodColor={isDark ? '#000000' : '#1F2823'} 
-              floodOpacity={isDark ? 0.6 : 0.18} 
+              stdDeviation="3" 
+              floodColor={isDark ? '#000000' : 'rgba(0, 0, 0, 0.1)'} 
+              floodOpacity="1" 
             />
           </filter>
 
           <filter id="route-glow" x="-20%" y="-20%" width="140%" height="140%">
-            <feGaussianBlur stdDeviation={isDark ? 5 : 3} result="blur" />
+            <feGaussianBlur stdDeviation={isDark ? 4 : 2.5} result="blur" />
             <feComposite in="SourceGraphic" in2="blur" operator="over" />
           </filter>
         </defs>
 
         {/* 1. Base Terrain Grid */}
-        <rect x="-500" y="-500" width="2200" height="2000" fill={isDark ? '#0D1310' : 'url(#campus-grid)'} />
-        {isDark && <rect x="-500" y="-500" width="2200" height="2000" fill="url(#campus-grid)" opacity="0.6" />}
+        <rect x="-500" y="-500" width="2200" height="2000" fill={isDark ? '#121214' : '#F5F5F7'} />
+        <rect x="-500" y="-500" width="2200" height="2000" fill="url(#campus-grid)" />
 
         {/* 2. TCET Campus Real Architectural Landscaping */}
         {showLawns && (
@@ -254,9 +253,9 @@ export function CampusMap({
               y="100" 
               width="55" 
               height="640" 
-              rx="3" 
-              fill={isDark ? '#151D18' : '#E6E2D8'} 
-              stroke={isDark ? '#233228' : '#D8D4C8'} 
+              rx="4" 
+              fill={isDark ? '#1A1A1E' : '#FFFFFF'} 
+              stroke={isDark ? '#2C2C2E' : '#E5E5EA'} 
               strokeWidth="1" 
             />
             <line 
@@ -264,7 +263,7 @@ export function CampusMap({
               y1="110" 
               x2="97" 
               y2="730" 
-              stroke={isDark ? '#3D5344' : '#FFFFFF'} 
+              stroke={isDark ? '#3A3A3C' : '#D1D1D6'} 
               strokeWidth="2" 
               strokeDasharray="12 12" 
             />
@@ -273,10 +272,10 @@ export function CampusMap({
               y="420" 
               transform="rotate(-90 92 420)" 
               fontSize="9" 
-              fontWeight="700" 
-              fill={isDark ? '#5E7D68' : '#7C867F'} 
-              letterSpacing="0.1em" 
-              fontFamily="var(--font-mono)"
+              fontWeight="600" 
+              fill={isDark ? '#8E8E93' : '#8E8E93'} 
+              letterSpacing="0.08em" 
+              fontFamily="var(--font-sans)"
             >
               SHYAMNARAYAN THAKUR MARG (THAKUR VILLAGE ROAD)
             </text>
@@ -287,11 +286,11 @@ export function CampusMap({
               y="150" 
               width="970" 
               height="580" 
-              rx="10" 
-              fill={isDark ? '#111A15' : '#F4F1E9'} 
-              stroke={isDark ? '#273B2E' : '#DDD8CB'} 
+              rx="12" 
+              fill={isDark ? '#161618' : '#FAF9F6'} 
+              stroke={isDark ? '#2C2C2E' : '#E2E0D8'} 
               strokeWidth="1.5" 
-              strokeDasharray="4 2" 
+              strokeDasharray="6 3" 
             />
 
             {/* A-Block Master Architectural Footprint Base */}
@@ -300,9 +299,9 @@ export function CampusMap({
               y="195" 
               width="295" 
               height="425" 
-              rx="8" 
-              fill={isDark ? '#16221B' : '#EDE9DF'} 
-              stroke={isDark ? '#2B4031' : '#DCD6C8'} 
+              rx="10" 
+              fill={isDark ? '#1C1C20' : '#EDEDF0'} 
+              stroke={isDark ? '#2C2C30' : '#DFDEE3'} 
               strokeWidth="1.5" 
             />
             <text 
@@ -310,10 +309,10 @@ export function CampusMap({
               y="212" 
               textAnchor="middle" 
               fontSize="9.5" 
-              fontWeight="800" 
-              fill={isDark ? '#7E9F88' : '#58635B'} 
+              fontWeight="700" 
+              fill={isDark ? '#8E8E93' : '#6E6E73'} 
               letterSpacing="0.06em" 
-              fontFamily="var(--font-mono)"
+              fontFamily="var(--font-sans)"
             >
               TCET A-BLOCK (7-STOREY ENGINEERING COMPLEX)
             </text>
@@ -323,31 +322,31 @@ export function CampusMap({
               cx="740" 
               cy="390" 
               r="62" 
-              fill={isDark ? '#18241C' : '#E8E4D8'} 
-              stroke={isDark ? '#273B2E' : '#D6D0C2'} 
+              fill={isDark ? '#1A1A1E' : '#E8E8ED'} 
+              stroke={isDark ? '#2C2C2E' : '#DCDCE2'} 
               strokeWidth="1.5" 
             />
             <circle 
               cx="740" 
               cy="390" 
               r="38" 
-              fill={isDark ? '#131D17' : '#E0DDD2'} 
-              stroke={isDark ? '#203126' : '#CCC6B8'} 
+              fill={isDark ? '#161618' : '#DFDFE5'} 
+              stroke={isDark ? '#242426' : '#D1D1D8'} 
               strokeWidth="1" 
               strokeDasharray="3 3" 
             />
-            <circle cx="740" cy="390" r="8" fill={isDark ? '#2F4839' : '#B4AD9F'} />
+            <circle cx="740" cy="390" r="8" fill={isDark ? '#2C2C2E' : '#C7C7CC'} />
 
-            {/* Thakur Sports Ground & Turf (3.5 Acres) */}
+            {/* Thakur Sports Ground & Turf (3.5 Acres) - Apple Maps Park Green */}
             <rect 
               x="880" 
               y="210" 
               width="160" 
               height="300" 
-              rx="20" 
-              fill={isDark ? '#132819' : '#DEEBDF'} 
-              stroke={isDark ? '#214229' : '#C5DBC6'} 
-              strokeWidth="2" 
+              rx="18" 
+              fill={isDark ? '#142718' : '#DCEBDC'} 
+              stroke={isDark ? '#1E3B24' : '#C5DEC6'} 
+              strokeWidth="1.5" 
             />
             {/* Athletic Track Boundary */}
             <rect 
@@ -356,9 +355,9 @@ export function CampusMap({
               width="130" 
               height="270" 
               rx="14" 
-              fill={isDark ? '#271D18' : '#E9DFD8'} 
-              stroke={isDark ? '#3F2C24' : '#D5C5BC'} 
-              strokeWidth="2" 
+              fill={isDark ? '#251C17' : '#EADED5'} 
+              stroke={isDark ? '#3A2C24' : '#D5C4B8'} 
+              strokeWidth="1.5" 
             />
             <rect 
               x="905" 
@@ -366,8 +365,8 @@ export function CampusMap({
               width="110" 
               height="250" 
               rx="10" 
-              fill={isDark ? '#122D1A' : '#D3E5D4'} 
-              stroke={isDark ? '#24522D' : '#B8D5BA'} 
+              fill={isDark ? '#132B1A' : '#D2E6D4'} 
+              stroke={isDark ? '#1F472B' : '#B8D8BA'} 
               strokeWidth="1.5" 
             />
             {/* Cricket Pitch */}
@@ -377,8 +376,8 @@ export function CampusMap({
               width="16" 
               height="70" 
               rx="2" 
-              fill={isDark ? '#383020' : '#D9CCA8'} 
-              stroke={isDark ? '#4D422B' : '#C7B892'} 
+              fill={isDark ? '#332C1E' : '#DDD2B8'} 
+              stroke={isDark ? '#473D2A' : '#CCBE9F'} 
               strokeWidth="1" 
             />
             <text 
@@ -439,7 +438,7 @@ export function CampusMap({
                   y1={p1.y}
                   x2={p2.x}
                   y2={p2.y}
-                  stroke={isBlocked ? '#E53E3E' : (isDark ? '#263B2F' : '#D1CBBF')}
+                  stroke={isBlocked ? '#FF3B30' : (isDark ? '#2C2C2E' : '#DFDFE4')}
                   strokeWidth={isBlocked ? 4 : 5}
                   strokeDasharray={isBlocked ? '6 4' : 'none'}
                   strokeLinecap="round"
@@ -452,10 +451,10 @@ export function CampusMap({
                     y1={p1.y}
                     x2={p2.x}
                     y2={p2.y}
-                    stroke={isDark ? 'rgba(72, 187, 120, 0.3)' : '#FFFFFF'}
+                    stroke={isDark ? '#3A3A3C' : '#FFFFFF'}
                     strokeWidth="1.5"
                     strokeDasharray="4 6"
-                    strokeOpacity="0.8"
+                    strokeOpacity="0.9"
                   />
                 )}
 
@@ -467,8 +466,8 @@ export function CampusMap({
                       y="-10" 
                       width="48" 
                       height="20" 
-                      rx="4" 
-                      fill="#E53E3E" 
+                      rx="6" 
+                      fill="#FF3B30" 
                       stroke="#FFFFFF" 
                       strokeWidth="1.5" 
                     />
@@ -477,9 +476,9 @@ export function CampusMap({
                       y="3.5" 
                       textAnchor="middle" 
                       fontSize="9" 
-                      fontWeight="800" 
+                      fontWeight="700" 
                       fill="#FFFFFF" 
-                      fontFamily="var(--font-mono)"
+                      fontFamily="var(--font-sans)"
                     >
                       BLOCKED
                     </text>
@@ -494,11 +493,11 @@ export function CampusMap({
                       y="-8"
                       width="36"
                       height="16"
-                      rx="3"
-                      fill={isDark ? '#17241C' : '#FFFFFF'}
-                      stroke={isDark ? '#293E31' : '#D8D4C8'}
-                      strokeWidth="1"
-                      opacity={isDark ? '0.95' : '0.9'}
+                      rx="4"
+                      fill={isDark ? '#242426' : '#FFFFFF'}
+                      stroke={isDark ? '#3A3A3C' : '#D1D1D6'}
+                      strokeWidth="0.8"
+                      opacity="0.95"
                     />
                     <text
                       x="0"
@@ -507,7 +506,7 @@ export function CampusMap({
                       fontSize="9"
                       fontWeight="600"
                       fontFamily="var(--font-mono)"
-                      fill={isDark ? '#98AD9F' : '#5C665F'}
+                      fill={isDark ? '#AEAEB2' : '#6E6E73'}
                     >
                       {edge.distance}m
                     </text>
@@ -518,48 +517,48 @@ export function CampusMap({
           })}
         </g>
 
-        {/* 4. Alternative Route (Dashed Terracotta / Neon Amber) */}
+        {/* 4. Alternative Route (Apple Maps Cyan / Teal / Amber) */}
         {alternativeSvgPath && activeRouteType !== 'alternative' && (
           <g className="route-alternative-layer">
             <path
               d={alternativeSvgPath}
               fill="none"
-              stroke={isDark ? '#F6AD55' : '#D96B27'}
-              strokeWidth="5"
-              strokeDasharray="8 6"
+              stroke={isDark ? '#FF9F0A' : '#5AC8FA'}
+              strokeWidth="4.5"
+              strokeDasharray="7 5"
               strokeLinecap="round"
               strokeLinejoin="round"
-              opacity="0.85"
+              opacity="0.9"
             />
           </g>
         )}
 
-        {/* 5. Primary Active Route (Glowing Forest Green / Radiant Emerald) */}
+        {/* 5. Primary Active Route (Apple Maps Signature Vibrant Blue) */}
         {primarySvgPath && (
           <g className="route-primary-layer">
-            {/* Soft Glow Underlay */}
+            {/* Soft Ambient Glow Underlay */}
             <path
               d={primarySvgPath}
               fill="none"
-              stroke={isDark ? 'rgba(56, 224, 133, 0.45)' : 'rgba(27, 59, 43, 0.25)'}
+              stroke={isDark ? 'rgba(10, 132, 255, 0.45)' : 'rgba(0, 122, 255, 0.28)'}
               strokeWidth="12"
               strokeLinecap="round"
               strokeLinejoin="round"
             />
-            {/* Solid Foreground Route */}
+            {/* Solid Apple Navigation Polyline */}
             <path
               d={primarySvgPath}
               fill="none"
               stroke={
                 activeRouteType === 'alternative' 
-                  ? (isDark ? '#F6AD55' : '#D96B27') 
-                  : (isDark ? '#38E085' : '#1B3B2B')
+                  ? (isDark ? '#FF9F0A' : '#FF9500') 
+                  : (isDark ? '#0A84FF' : '#007AFF')
               }
               strokeWidth="5.5"
               strokeLinecap="round"
               strokeLinejoin="round"
             />
-            {/* Animated Directional Dash */}
+            {/* Animated Directional Navigation Dash */}
             <path
               d={primarySvgPath}
               fill="none"
@@ -567,7 +566,7 @@ export function CampusMap({
               strokeWidth="2"
               strokeDasharray="6 10"
               strokeLinecap="round"
-              opacity="0.9"
+              opacity="0.85"
             >
               <animate
                 attributeName="stroke-dashoffset"
@@ -605,15 +604,15 @@ export function CampusMap({
                   y={-halfH}
                   width={b.width}
                   height={b.height}
-                  rx="6"
-                  fill={isDark ? '#17221C' : '#FFFFFF'}
+                  rx="8"
+                  fill={isDark ? '#1C1C1E' : '#FFFFFF'}
                   stroke={
-                    isStart ? (isDark ? '#38E085' : '#1B3B2B') :
-                    isDest ? (isDark ? '#F6AD55' : '#D96B27') :
-                    isWayPoint ? (isDark ? '#3E7D56' : '#7C9385') :
-                    (isDark ? '#283B2F' : '#D1CAC0')
+                    isStart ? (isDark ? '#0A84FF' : '#007AFF') :
+                    isDest ? (isDark ? '#FF9F0A' : '#FF9500') :
+                    isWayPoint ? (isDark ? '#409CFF' : '#70B0FF') :
+                    (isDark ? '#2C2C2E' : 'rgba(0, 0, 0, 0.08)')
                   }
-                  strokeWidth={isStart || isDest ? 2.5 : 1.5}
+                  strokeWidth={isStart || isDest ? 2.5 : 1}
                   filter="url(#building-shadow)"
                   className="building-rect"
                 />
@@ -625,9 +624,9 @@ export function CampusMap({
                     y={-halfH + 14}
                     width={b.width - 32}
                     height={b.height - 28}
-                    rx="3"
-                    fill={isDark ? '#101713' : '#F2EFE8'}
-                    stroke={isDark ? '#223328' : '#D8D3C8'}
+                    rx="4"
+                    fill={isDark ? '#141416' : '#F5F5F7'}
+                    stroke={isDark ? '#242426' : '#E5E5EA'}
                     strokeWidth="1"
                   />
                 )}
@@ -637,9 +636,9 @@ export function CampusMap({
                   x={-halfW + 1}
                   y={-halfH + 1}
                   width={b.width - 2}
-                  height="5"
-                  rx="2"
-                  fill={isDark && isStart ? '#38E085' : categoryMeta.color}
+                  height="4"
+                  rx="3"
+                  fill={isDark && isStart ? '#0A84FF' : categoryMeta.color}
                 />
 
                 {/* Building Code Badge */}
@@ -648,17 +647,17 @@ export function CampusMap({
                   y={-halfH + 10}
                   width="36"
                   height="16"
-                  rx="3"
-                  fill={isDark ? '#223328' : categoryMeta.badgeBg}
+                  rx="4"
+                  fill={isDark ? '#2C2C2E' : categoryMeta.badgeBg}
                 />
                 <text
                   x={-halfW + 26}
                   y={-halfH + 21.5}
                   textAnchor="middle"
                   fontSize="9.5"
-                  fontWeight="800"
+                  fontWeight="700"
                   fontFamily="var(--font-mono)"
-                  fill={isDark ? '#81E6D9' : categoryMeta.badgeText}
+                  fill={isDark ? '#64D2FF' : categoryMeta.badgeText}
                 >
                   {b.code}
                 </text>
@@ -668,28 +667,28 @@ export function CampusMap({
                   x={-halfW + 8}
                   y={halfH - 12}
                   fontSize="11"
-                  fontWeight="700"
+                  fontWeight="600"
                   fontFamily="var(--font-sans)"
-                  fill={isDark ? '#EDF4EF' : '#1C221F'}
+                  fill={isDark ? '#F5F5F7' : '#1D1D1F'}
                 >
                   {b.shortName || (b.name.length > 18 ? b.name.substring(0, 16) + '…' : b.name)}
                 </text>
 
-                {/* Start Pin Badge (Green) */}
+                {/* Start Pin Badge (Apple Blue A) */}
                 {isStart && (
                   <g transform={`translate(0, ${-halfH - 14})`}>
-                    <circle cx="0" cy="0" r="12" fill={isDark ? '#28A745' : '#1B3B2B'} stroke="#FFFFFF" strokeWidth="2" />
-                    <text x="0" y="3.5" textAnchor="middle" fontSize="10" fontWeight="800" fill="#FFFFFF">
+                    <circle cx="0" cy="0" r="12" fill={isDark ? '#0A84FF' : '#007AFF'} stroke="#FFFFFF" strokeWidth="2" filter="url(#building-shadow)" />
+                    <text x="0" y="3.5" textAnchor="middle" fontSize="10" fontWeight="700" fill="#FFFFFF" fontFamily="var(--font-sans)">
                       A
                     </text>
                   </g>
                 )}
 
-                {/* Destination Pin Badge (Orange) */}
+                {/* Destination Pin Badge (Apple Orange B) */}
                 {isDest && (
                   <g transform={`translate(0, ${-halfH - 14})`}>
-                    <circle cx="0" cy="0" r="12" fill={isDark ? '#DD6B20' : '#D96B27'} stroke="#FFFFFF" strokeWidth="2" />
-                    <text x="0" y="3.5" textAnchor="middle" fontSize="10" fontWeight="800" fill="#FFFFFF">
+                    <circle cx="0" cy="0" r="12" fill={isDark ? '#FF9F0A' : '#FF9500'} stroke="#FFFFFF" strokeWidth="2" filter="url(#building-shadow)" />
+                    <text x="0" y="3.5" textAnchor="middle" fontSize="10" fontWeight="700" fill="#FFFFFF" fontFamily="var(--font-sans)">
                       B
                     </text>
                   </g>
@@ -699,16 +698,16 @@ export function CampusMap({
           })}
         </g>
 
-        {/* 7. Pedestrian Walking Avatar Pin during Simulation */}
+        {/* 7. Pedestrian Walking Avatar Pin during Simulation (Apple Maps Navigation Puck) */}
         {simulationPoint && (
           <g transform={`translate(${simulationPoint.x}, ${simulationPoint.y})`}>
             {/* Animated Pulse Ring */}
-            <circle cx="0" cy="0" r="18" fill={isDark ? 'rgba(246, 173, 85, 0.4)' : 'rgba(217, 107, 39, 0.25)'}>
-              <animate attributeName="r" values="10;22;10" dur="1.5s" repeatCount="indefinite" />
+            <circle cx="0" cy="0" r="18" fill={isDark ? 'rgba(10, 132, 255, 0.35)' : 'rgba(0, 122, 255, 0.25)'}>
+              <animate attributeName="r" values="10;24;10" dur="1.5s" repeatCount="indefinite" />
               <animate attributeName="opacity" values="0.8;0.1;0.8" dur="1.5s" repeatCount="indefinite" />
             </circle>
-            {/* Center Walker Pin */}
-            <circle cx="0" cy="0" r="8" fill={isDark ? '#ED8936' : '#D96B27'} stroke="#FFFFFF" strokeWidth="2.5" />
+            {/* Center Navigation Puck */}
+            <circle cx="0" cy="0" r="8" fill={isDark ? '#0A84FF' : '#007AFF'} stroke="#FFFFFF" strokeWidth="2.5" />
             <circle cx="0" cy="0" r="3" fill="#FFFFFF" />
           </g>
         )}

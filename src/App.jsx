@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useCampusNavigation } from './hooks/useCampusNavigation';
 import { Header } from './components/Header';
 import { Sidebar } from './components/Sidebar';
@@ -9,6 +9,11 @@ import { DsaInspectorModal } from './components/DsaInspectorModal';
 
 export default function App() {
   const nav = useCampusNavigation();
+  const [isMobileDrawerCollapsed, setIsMobileDrawerCollapsed] = useState(false);
+
+  const toggleMobileDrawer = () => {
+    setIsMobileDrawerCollapsed(prev => !prev);
+  };
 
   return (
     <div className="app-viewport">
@@ -23,6 +28,8 @@ export default function App() {
         blockedCount={nav.blockedEdgeIds.size}
         theme={nav.theme}
         onToggleTheme={nav.toggleTheme}
+        isMobileDrawerCollapsed={isMobileDrawerCollapsed}
+        onToggleMobileDrawer={toggleMobileDrawer}
       />
 
       {/* 2. Main Workspace: Sidebar & Interactive Campus Map */}
@@ -49,6 +56,8 @@ export default function App() {
           onClearAllRoadblocks={nav.clearAllRoadblocks}
           isBlockModeActive={nav.isBlockModeActive}
           setIsBlockModeActive={nav.setIsBlockModeActive}
+          isMobileDrawerCollapsed={isMobileDrawerCollapsed}
+          onToggleMobileDrawer={toggleMobileDrawer}
         />
 
         <CampusMap
