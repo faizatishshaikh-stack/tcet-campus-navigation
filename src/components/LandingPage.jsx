@@ -195,6 +195,7 @@ export function LandingPage({
                 directions={[]}
                 theme={theme}
                 disableWheelZoom={true}
+                isPreview={true}
               />
 
               {/* Floating Live Telemetry Cards on Preview */}

@@ -9,6 +9,42 @@
  * Edges: Pedestrian walkways with physical distance calibrated in meters.
  */
 
+export const TCET_CAMPUS_GEO = {
+  name: 'Thakur College of Engineering and Technology (TCET)',
+  campus: 'Thakur Educational Campus',
+  address: 'A-Block, Gate No. 5, Shyamnarayan Thakur Marg, Thakur Village, Kandivali (East), Mumbai, Maharashtra 400101',
+  coordinates: {
+    latitude: 19.2059442,
+    longitude: 72.8745916,
+    formatted: '19.2059442° N, 72.8745916° E'
+  },
+  established: 2001,
+  accreditation: 'Autonomous Institute affiliated with University of Mumbai • NAAC A+ Grade',
+  verifiedFeatures: [
+    { name: 'Gate No. 5 (TCET Main Entrance)', type: 'Transit / Entry', status: 'VERIFIED', location: 'Shyamnarayan Thakur Marg (West Campus Boundary)' },
+    { name: 'A-Block 7-Storey Engineering Complex', type: 'Academic / Admin', status: 'VERIFIED', location: 'Main central structure housing Foyer, Admin, Exam Cell, Labs & Library' },
+    { name: 'Central Foyer & High-Speed Lifts 1–4', type: 'Academic Hub', status: 'VERIFIED', location: 'Ground Floor, central elevator atrium and reception' },
+    { name: 'Administrative Office & Accounts', type: 'Administration', status: 'VERIFIED', location: 'A-Block Ground Floor North Wing' },
+    { name: 'Examination Cell & Principal Office', type: 'Administration', status: 'VERIFIED', location: 'A-Block Ground Floor South Wing' },
+    { name: 'Stationery & Xerox Kiosk', type: 'Utility', status: 'VERIFIED', location: 'Ground Level Portico, near main entrance' },
+    { name: 'Central Engineering Workshop (~350 sq. m)', type: 'Practical Labs', status: 'VERIFIED', location: 'Ground Level South Annex' },
+    { name: 'Learning Resource Centre (Library)', type: 'Academic', status: 'VERIFIED', location: '4th Floor, A-Block (1,120+ sq. m)' },
+    { name: 'Computing & AI Labs Hub', type: 'Academic', status: 'VERIFIED', location: '3rd & 5th Floors, A-Block (CMPN, IT, AI&DS)' },
+    { name: 'Auditorium & Seminar Halls', type: 'Events', status: 'VERIFIED', location: 'Ground Floor & 7th Floor, A-Block' },
+    { name: 'Central Courtyard & Amphitheatre', type: 'Recreational', status: 'VERIFIED', location: 'Paved quadrangle east of A-Block' },
+    { name: 'Central Campus Canteen & Cafeteria', type: 'Dining', status: 'VERIFIED', location: 'Campus complex quadrangle north-east' },
+    { name: 'TIMSR Management Block (C-Block)', type: 'Management', status: 'VERIFIED', location: 'Adjacent wing south-east of A-Block' },
+    { name: 'Thakur Sports Ground & Turf (3.5 Acres)', type: 'Sports Arena', status: 'VERIFIED', location: 'Eastern campus athletic arena with cricket pitch & track' },
+    { name: 'Gate No. 4 (East Campus Gate)', type: 'Transit / Entry', status: 'VERIFIED', location: 'East perimeter access to Thakur Village road' },
+    { name: 'Two-Wheeler Student Parking Bay', type: 'Parking', status: 'VERIFIED', location: 'North-west quadrant inside Gate No. 5' },
+    { name: 'Faculty Four-Wheeler Covered Parking', type: 'Parking', status: 'VERIFIED', location: 'South-west quadrant near entrance porch' }
+  ],
+  approximatedFeatures: [
+    { name: 'Schematic Room Internal Polygon Boundaries', status: 'APPROXIMATED_FOR_SCHEMATIC_CLARITY', notes: 'Internal room walls within A-Block are represented as calibrated functional nodes to maintain optimal 2D routing without visual clutter.' },
+    { name: 'Sub-meter Courtyard Pathway Curvatures', status: 'APPROXIMATED_FOR_SCHEMATIC_CLARITY', notes: 'Walkways between courtyard pavers are modeled as Euclidean graph edges calibrated to verified physical walking distances (25m - 75m).' }
+  ]
+};
+
 export const CAMPUS_BUILDINGS = [
   {
     id: 'gate_5',
